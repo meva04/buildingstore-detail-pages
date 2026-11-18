@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SketchUp 프로모션 배너 (2027 출시 기념 · 블랙프라이데이) | 빌딩스토어</title>
+<title>SketchUp 블랙프라이데이 프로모션 배너 | 빌딩스토어</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
 <link rel="stylesheet" href="../common/promo.css">
 <style>
@@ -14,15 +14,13 @@
 <body>
 <!--
   프로모션 배너 — 상세페이지와 별도의 블록. 사이트에는 아래 <div class="sketchup_promo_container"> 블록만 넣는다 (상세페이지 블록 위에). 스타일: ../common/promo.css
-  블록 안에 배너가 2개 있고, 각 <section class="promo" data-start / data-end> 기간(한국 시간 +09:00)에만 보인다.
-    ① 스케치업 2027 출시 기념 최대 15% (promo-launch) : data-off → 사이트에서는 보이지 않음 (테스트 미리보기 전용)
-    ② 블랙프라이데이 30% (promo-bf)                    : 11/20 00:00 ~ 12/4 23:59:59 (data-end 12/5 00:00)
-    → 지금 올려 두면 11/19까지는 배너 없음, 11/20 00:00에 ②가 나타나고, 12/5 00:00에 사라진다.
+  블랙프라이데이 30% 배너 (promo-bf): <section class="promo" data-start / data-end> 기간(한국 시간 +09:00)에만 보인다.
+    11/20 00:00 ~ 12/4 23:59:59 (data-end 12/5 00:00). 그 밖의 기간에는 배너가 없다.
   - 카운트다운: 각 배너의 data-end 까지 센다.
   - 제품별 마감: 카드 <li data-end="…"> 시각부터 그 카드는 흑백·반투명 + 링크 비활성
   - 제품 링크: 각 카드 <a> 의 href
   - 테스트용 주소 옵션 (test_layout.html 의 "배너" 메뉴에서 고를 수 있음)
-      ?promo-show=launch 또는 ?promo-show=bf : 날짜와 상관없이 그 배너만 보기
+      ?promo-show=bf                         : 날짜와 상관없이 배너 보기
       ?promo-at=2026-11-20T00:00             : 그 한국 시각부터 흐르는 시계로 동작
   - 프로모션이 모두 끝나면 이 블록과 promo.css 를 사이트에서 빼면 된다.
 -->
@@ -40,73 +38,7 @@
       })(document);
     </script>
 
-    <!-- ① 스케치업 2027 출시 기념 최대 15% : data-off = 사이트에서 숨김 (?promo-show=launch 로만 보임) -->
-    <section class="promo promo-launch" data-promo="launch" data-off data-end="2026-11-20T00:00:00+09:00" aria-label="스케치업 2027 출시 기념 이벤트">
-      <div class="promo-inner">
-        <div class="promo-top">
-          <div class="promo-art">
-            <img src="assets/promo-15off.svg" width="501" height="370" alt="상업용 최대 15% 할인, 11.2 ~ 11.19">
-          </div>
-          <div class="promo-info">
-            <div class="promo-head">
-              <p class="kicker">스케치업 2027 출시 기념 EVENT</p>
-              <p class="promo-until">프로모션 종료까지</p>
-              <p class="promo-countdown" role="timer" data-countdown>
-                <span class="cd"><b data-cd="d">00</b>일</span>
-                <span class="cd"><b data-cd="h">00</b>시간</span>
-                <span class="cd"><b data-cd="m">00</b>분</span>
-                <span class="cd"><b data-cd="s">00</b>초</span>
-              </p>
-              <p class="promo-period-note">* 제품별 프로모션 기간이 상이하니, 구매 전 확인해 주세요.</p>
-            </div>
-            <ul class="promo-notes">
-              <li>상업용 신규 및 시트추가 고객 대상</li>
-              <li>취소 후 재결제 시 혜택 적용이 불가합니다.</li>
-              <li class="flow">프로모션 진행 중 트림블사의 요청에 따라 제한사항이 추가, <br>변경 또는 수정될 수 있습니다.</li>
-              <li><button type="button" class="promo-more" aria-controls="promo-terms" aria-expanded="false">[유의사항 더 보기]</button></li>
-            </ul>
-          </div>
-        </div>
-        <div class="promo-bottom">
-          <ul class="promo-cards">
-            <li data-end="2026-11-07T00:00:00+09:00"><a class="promo-card" href="https://store.buildingpoint.co.kr/product?pid=18051600091" target="_blank" rel="noopener">
-              <span class="promo-card-img"><img src="assets/promo-pro.jpg" alt=""><span class="promo-badges"><span class="promo-badge">-10%</span><span class="promo-badge is-until">11/6 까지</span></span></span>
-              <span class="promo-card-body"><strong class="promo-name">SketchUp Pro</strong><del class="promo-was">693,000원</del><span class="promo-now">623,700원</span></span>
-            </a></li>
-            <li><a class="promo-card" href="https://store.buildingpoint.co.kr/product?pid=18051600159" target="_blank" rel="noopener">
-              <span class="promo-card-img"><img src="assets/promo-proscan.jpg" alt=""><span class="promo-badges"><span class="promo-badge">-15%</span><span class="promo-badge is-until">11/19 까지</span></span></span>
-              <span class="promo-card-body"><strong class="promo-name">Pro Scan</strong><del class="promo-was">863,500원</del><span class="promo-now">733,975원</span></span>
-            </a></li>
-            <li><a class="promo-card" href="https://store.buildingpoint.co.kr/product?pid=18051600172" target="_blank" rel="noopener">
-              <span class="promo-card-img"><img src="assets/promo-advanced.jpg" alt=""><span class="promo-badges"><span class="promo-badge">-15%</span><span class="promo-badge is-until">11/19 까지</span></span></span>
-              <span class="promo-card-body"><strong class="promo-name">Pro Advanced</strong><del class="promo-was">1,034,000원</del><span class="promo-now">878,900원</span></span>
-            </a></li>
-            <li data-end="2026-11-07T00:00:00+09:00"><a class="promo-card" href="https://store.buildingpoint.co.kr/product?pid=18051600130" target="_blank" rel="noopener">
-              <span class="promo-card-img"><img src="assets/promo-studio.jpg" alt=""><span class="promo-badges"><span class="promo-badge">-10%</span><span class="promo-badge is-until">11/6 까지</span></span></span>
-              <span class="promo-card-body"><strong class="promo-name">Studio</strong><del class="promo-was">1,474,000원</del><span class="promo-now">1,326,600원</span></span>
-            </a></li>
-          </ul>
-          <!-- [유의사항 더 보기] opens this box over the product cards (same size); × closes it -->
-          <div class="promo-terms" id="promo-terms" role="region" aria-label="프로모션 유의사항" tabindex="-1">
-            <button type="button" class="promo-terms-close" aria-label="유의사항 닫기"></button>
-            <p class="promo-terms-title">프로모션 유의사항</p>
-            <p class="promo-terms-lead">해당 프로모션은 제한된 기간 동안만 혜택이 적용됩니다.</p>
-            <ul>
-              <li>프로모션 혜택은 스케치업 상업용 라이선스 구매 고객에게만 제공되며, 스케치업 프로, 프로 스캔, 프로 어드밴스드, 스튜디오 1년 구독 제품을 신규 또는 시트추가 구매하는 경우에만 혜택 적용이 가능합니다.</li>
-              <li>프로모션 기간 이전에 주문, 결제 또는 라이선스 발급이 이루어진 경우에는 혜택 적용이 불가합니다.</li>
-              <li>취소 후 재결제 시 혜택 적용이 불가합니다.</li>
-              <li>프로모션 혜택은 공식적으로 인증된 파트너사를 통한 주문 시에만 적용됩니다.</li>
-              <li>불법 라이선스를 사용하는 고객에게는 프로모션 혜택이 적용되지 않습니다.</li>
-              <li>다른 프로모션과 중복 적용이 불가합니다.</li>
-              <li>프로모션 진행 중 트림블사의 요청에 따라 제한사항이 추가, 변경 또는 수정될 수 있습니다.</li>
-              <li>트림블사의 요청에 따라 프로모션이 조기 종료될 수 있습니다.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ② 블랙프라이데이 30% : 11/20 ~ 12/4 (Figma 4075:21853) -->
+    <!-- 블랙프라이데이 30% : 11/20 ~ 12/4 (Figma 4075:21853) -->
     <section class="promo promo-bf" data-promo="bf" data-start="2026-11-20T00:00:00+09:00" data-end="2026-12-05T00:00:00+09:00" aria-label="블랙프라이데이 최대 30% 할인 이벤트">
       <div class="bf-bg" aria-hidden="true"><img src="assets/bf/bg-pattern.jpg" alt=""></div>
       <div class="bf-hero">
@@ -199,8 +131,8 @@
     }).catch(function () {});
   }
   /* Each <section class="promo" data-start / data-end> is shown only inside its own period (hidden before, gone
-     after — also while the page stays open). A section with data-off is never shown on its own. Test options in the address:
-       ?promo-show=launch|bf  shows only that banner, whatever the date
+     after — also while the page stays open). Test options in the address:
+       ?promo-show=bf         shows that banner, whatever the date
        ?promo-preview         shows every banner */
   var show = (/[?&]promo-show=(\w+)/.exec(location.search) || [])[1];
   var preview = /[?&]promo-preview\b/.test(location.search);
@@ -210,7 +142,7 @@
     var p = period(sec), visTimer;
     function visibility() {
       var t = now(), live = show ? sec.getAttribute('data-promo') === show
-        : preview || (!sec.hasAttribute('data-off') && (isNaN(p.start) || t >= p.start) && (isNaN(p.end) || t < p.end));  // data-off: never on the site
+        : preview || ((isNaN(p.start) || t >= p.start) && (isNaN(p.end) || t < p.end));
       sec.classList.toggle('is-live', live);
       clearTimeout(visTimer);
       var next = t < p.start ? p.start : (t < p.end ? p.end : NaN);

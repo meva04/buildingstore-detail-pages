@@ -1,4 +1,4 @@
-/* SketchUp 프로모션 배너 (① 2027 출시 기념 15% · ② 블랙프라이데이 30%, 아래쪽 .promo-bf) — every rule is scoped to .sketchup_promo_container.
+/* SketchUp 프로모션 배너 (블랙프라이데이 30%, .promo-bf) — every rule is scoped to .sketchup_promo_container.
    A separate block from the detail page (.sketchup_detail_container / sketchup.css): it sits above it on the site
    and can be removed on its own when the promotion ends.
    Sizes follow the Figma frame (951px wide): every px value is written as N × --pu, where --pu is 1px at 951px+
@@ -21,8 +21,7 @@
   .sketchup_promo_container, .sketchup_promo_container * { box-sizing: border-box; margin: 0; padding: 0; }
   /* scheduled banners (<section class="promo" data-start / data-end>): hidden until the script finds it inside its period (.is-live) */
   .sketchup_promo_container .promo[data-start]:not(.is-live),
-  .sketchup_promo_container .promo[data-end]:not(.is-live),
-  .sketchup_promo_container .promo[data-off]:not(.is-live) { display: none; }
+  .sketchup_promo_container .promo[data-end]:not(.is-live) { display: none; }
   .sketchup_promo_container img { display: block; max-width: 100%; }
   .sketchup_promo_container ul, .sketchup_promo_container ol { list-style: none; }
   /* inline text keeps the parent's font, line height, baseline and inline display (the host site's CSS
@@ -32,80 +31,27 @@
 
   /* banner box: rounded corners (8 → 16px) except at full width (≥ 1400px), gap to the detail page below */
   .sketchup_promo_container .promo {
+    --pu: 0.88px;
     border-radius: 16px; border-radius: clamp(8px, 8px + 8 * (100cqw - 360px) / 476, 16px);
     margin-bottom: 24px; margin-bottom: clamp(16px, 16px + 8 * (100cqw - 360px) / 476, 24px);
     overflow: hidden;
   }
-  @container sketchup-promo (min-width: 1400px) {
-    .sketchup_promo_container .promo { border-radius: 0; }
-  }
-  .sketchup_promo_container .promo-inner {
-    display: flex; flex-direction: column; gap: inherit;
-    width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto;
-  }
-  .sketchup_promo_container .kicker {
-    display: inline-flex; align-items: center; justify-content: center;
-    border-radius: 500px; background: var(--amber);
-    line-height: 1.2; letter-spacing: -0.027em; color: var(--dark-blue);
-  }
-
-  @font-face {
-    font-family: 'YeogiOttaeJalnanGothic';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
-    font-weight: normal;
-    font-display: swap;
-  }
-  .sketchup_promo_container .promo {
-    --pu: 0.88px;
-    --jalnan: "YeogiOttaeJalnanGothic", "Pretendard Variable", "Pretendard", sans-serif;
-    background: var(--primary); color: #fff;
-    padding: calc(44 * var(--pu)) calc(41 * var(--pu));
-    display: flex; flex-direction: column; gap: calc(32 * var(--pu));
-  }
   @supports (width: 1cqw) {
     .sketchup_promo_container .promo { --pu: min(1px, 100cqw / 951); }
   }
-  .sketchup_promo_container .promo-top { display: flex; align-items: flex-end; }
-  .sketchup_promo_container .promo-art { flex: 1 1 0; min-width: 0; margin-right: calc(-37 * var(--pu)); }
-  /* promo-15off.svg (Figma 228:5090): all-vector artwork "상업용 최대 15% 할인 · 11.2 ~ 11.19", 501 × 370 */
-  .sketchup_promo_container .promo-art img { width: 100%; height: auto; }
-  .sketchup_promo_container .promo-info {
-    flex: none; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-between;
-    align-self: stretch; padding-bottom: calc(16 * var(--pu)); gap: calc(24 * var(--pu)); text-align: right;
+  @container sketchup-promo (min-width: 1400px) {
+    .sketchup_promo_container .promo { border-radius: 0; }
   }
-  .sketchup_promo_container .promo-head { display: flex; flex-direction: column; align-items: flex-end; }
-  .sketchup_promo_container .promo .kicker { font-size: calc(22 * var(--pu)); font-weight: 800; padding: calc(10 * var(--pu)) calc(26 * var(--pu)); }  /* 22px at full banner width */
-  .sketchup_promo_container .promo-until {
-    margin-top: calc(30 * var(--pu)); font-family: var(--jalnan); font-size: calc(30 * var(--pu)); line-height: 1.25; letter-spacing: -0.02em; color: #fff;
-  }
-  .sketchup_promo_container .promo-countdown {
-    margin-top: calc(12 * var(--pu)); display: flex; justify-content: flex-end; gap: calc(8 * var(--pu));
-    font-family: var(--jalnan); font-size: calc(28.5 * var(--pu)); line-height: 1.2; letter-spacing: -0.02em; color: #fff; white-space: nowrap;
-  }
-  .sketchup_promo_container .promo-countdown b {
-    display: inline-block; min-width: 1.25em; text-align: right;   /* fixed width: digits don't make the row jump */
-    font-size: calc(44.2 * var(--pu)); font-weight: 400; color: var(--amber); font-variant-numeric: tabular-nums;
-  }
-  .sketchup_promo_container .promo-period-note {
-    margin-top: calc(12 * var(--pu)); font-size: max(12px, calc(14 * var(--pu))); line-height: 1.45; letter-spacing: -0.02em; color: #fff;
-  }
-  .sketchup_promo_container .promo-notes {
-    width: calc(415 * var(--pu)); max-width: 100%;
-    font-size: max(12px, calc(14 * var(--pu))); line-height: 1.45; letter-spacing: -0.02em; color: #fff;
-  }
-  .sketchup_promo_container .promo-notes li:not(:has(> .promo-more))::before { content: "•"; margin-right: 0.6em; }  /* no bullet on the [유의사항 더 보기] link */
+
+  /* [유의사항 더 보기] button and the terms box it opens over the product cards; × or Esc closes it */
   .sketchup_promo_container .promo-more {
     padding: 0; border: 0; background: none; font: inherit; font-weight: 700; color: inherit; cursor: pointer; text-decoration: none;
   }
   .sketchup_promo_container .promo-more:hover,
   .sketchup_promo_container .promo-more[aria-expanded="true"] { text-decoration: underline; }
   .sketchup_promo_container .promo-more:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
-  /* product cards (links) */
-  /* product cards + the terms box that opens over them ([유의사항 더 보기]) */
   .sketchup_promo_container .promo-bottom { position: relative; }
-  .sketchup_promo_container .promo-bottom.is-terms-open .promo-cards { visibility: hidden; }   /* keeps their size for the box */
   .sketchup_promo_container .promo-terms {
-    /* covers the cards; may grow into the banner's bottom padding when the text needs a little more room */
     position: absolute; top: 0; left: 0; right: 0; min-height: 100%; max-height: calc(100% + 28 * var(--pu));
     z-index: 2; overflow-y: auto; overscroll-behavior: contain;
     padding: calc(16 * var(--pu)) calc(24 * var(--pu)); border-radius: calc(12.2 * var(--pu));
@@ -120,8 +66,7 @@
   .sketchup_promo_container .promo-terms-lead { display: inline; }   /* title and first line share one row */
   .sketchup_promo_container .promo-terms-lead { margin-left: 0.6em; font-size: inherit; line-height: inherit; font-weight: 600; color: var(--ink); }
   .sketchup_promo_container .promo-terms ul { margin-top: 0.5em; columns: 2; column-gap: calc(28 * var(--pu)); }  /* wide, short box: two columns */
-  .sketchup_promo_container .promo-terms li { break-inside: avoid; }
-  .sketchup_promo_container .promo-terms li { position: relative; padding-left: 0.9em; }
+  .sketchup_promo_container .promo-terms li { break-inside: avoid; position: relative; padding-left: 0.9em; }
   .sketchup_promo_container .promo-terms li + li { margin-top: 0.15em; }
   .sketchup_promo_container .promo-terms li::before {
     content: ""; position: absolute; left: 0.1em; top: calc((1.45em - 0.25em) / 2);
@@ -139,72 +84,13 @@
   .sketchup_promo_container .promo-terms-close::after { transform: translate(-50%, -50%) rotate(-45deg); }
   .sketchup_promo_container .promo-terms-close:hover { background: var(--gray-50); }
   .sketchup_promo_container .promo-terms-close:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
-  .sketchup_promo_container .promo-cards { display: flex; gap: calc(16 * var(--pu)) calc(8 * var(--pu)); }
-  .sketchup_promo_container .promo-cards > li { flex: 1 1 0; min-width: 0; }
-  .sketchup_promo_container .promo-card {
-    display: flex; flex-direction: column; height: 100%; border-radius: calc(12.2 * var(--pu)); overflow: hidden;
-    background: #fff; color: #000; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .sketchup_promo_container .promo-card:hover,
-  .sketchup_promo_container .promo-card:focus-visible { transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18); }
-  .sketchup_promo_container .promo-card:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
-  .sketchup_promo_container .promo-card-img { position: relative; display: block; height: calc(120.3 * var(--pu)); background: #fff; }
-  .sketchup_promo_container .promo-card-img img { width: 100%; height: 100%; object-fit: cover; }
-  .sketchup_promo_container .promo-cards > li:first-child .promo-card-img img { object-position: center 20%; }
-  .sketchup_promo_container .promo-badges {
-    position: absolute; left: calc(10.9 * var(--pu)); top: calc(10.46 * var(--pu));
-    display: flex; flex-wrap: wrap; gap: calc(3.5 * var(--pu));
-  }
-  .sketchup_promo_container .promo-badge {
-    padding: calc(4.36 * var(--pu)) calc(7.84 * var(--pu)); border-radius: 50px; background: var(--amber);
-    font-size: calc(15.7 * var(--pu)); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; color: #000;
-  }
-  .sketchup_promo_container .promo-badge.is-until { background: #019aeb; color: #fff; }   /* "11/6 까지" */
-  /* product whose own promotion has ended (<li data-end> passed): grey, see-through, not clickable */
-  .sketchup_promo_container .promo-cards > li.is-ended .promo-card {
-    filter: grayscale(1); opacity: 0.45; pointer-events: none; cursor: default; transform: none; box-shadow: none;
-  }
-  .sketchup_promo_container .promo-card-body {
-    display: flex; flex-direction: column; flex: 1 1 auto;
-    padding: calc(10.5 * var(--pu)) calc(13.9 * var(--pu)) calc(25.3 * var(--pu));
-    font-weight: 700; letter-spacing: -0.02em; line-height: 1.2;
-  }
-  .sketchup_promo_container .promo-name { font-size: calc(17.4 * var(--pu)); font-weight: 700; margin-bottom: calc(5.2 * var(--pu)); }
-  .sketchup_promo_container .promo-was { font-size: max(11px, calc(10.5 * var(--pu))); font-weight: 600; color: rgba(0, 0, 0, 0.5); }
-  .sketchup_promo_container .promo-now { font-size: calc(15.7 * var(--pu)); }
-
-  /* promotion banner on mobile (detail ≤ 764px): artwork on top, text centred, cards 2 × 2 */
   @container sketchup-promo (max-width: 764px) {
-    .sketchup_promo_container .promo { --pu: min(1px, 100cqw / 560); padding: calc(36 * var(--pu)) calc(24 * var(--pu)); }
-    .sketchup_promo_container .promo-top { flex-direction: column; align-items: stretch; gap: calc(20 * var(--pu)); }
-    .sketchup_promo_container .promo-art { margin: 0 auto; width: 88%; flex: none; }
-    .sketchup_promo_container .promo-info { align-items: center; text-align: center; padding-bottom: 0; }
-    .sketchup_promo_container .promo-head { align-items: center; }
-    .sketchup_promo_container .promo-countdown { justify-content: center; }
-    .sketchup_promo_container .promo-notes { width: auto; }
-    .sketchup_promo_container .promo-cards { display: grid; grid-template-columns: 1fr 1fr; }
     .sketchup_promo_container .promo-terms ul { columns: 1; }
-    .sketchup_promo_container .promo-terms { max-height: calc(100% + 10 * var(--pu)); }  /* keep a margin above the banner edge; the rest scrolls */
-  }
-  @supports not (container-type: inline-size) {
-  @media (max-width: 1200px) {
-    .sketchup_promo_container .promo-top { flex-direction: column; align-items: stretch; }
-    .sketchup_promo_container .promo-art { margin: 0 auto; width: 88%; flex: none; }
-    .sketchup_promo_container .promo-info, .sketchup_promo_container .promo-head { align-items: center; text-align: center; }
-    .sketchup_promo_container .promo-countdown { justify-content: center; }
-    .sketchup_promo_container .promo-notes { width: auto; }
-    .sketchup_promo_container .promo-cards { display: grid; grid-template-columns: 1fr 1fr; }
-  }
-  }
-
-  /* mobile: the line breaks written for the wide layout (.flow br) are dropped */
-  @container sketchup-promo (max-width: 764px) {
-    .sketchup_promo_container .flow br { display: none; }
   }
 
 
 /* ===================================================================================================
-   ② 블랙프라이데이 30% 배너 (.promo-bf, Figma 4075:21853 · 951 × 1064)
+   블랙프라이데이 30% 배너 (.promo-bf, Figma 4075:21853 · 951 × 1064)
    Same unit system as above: --pu = 1px at 951px+, shrinking with the banner width.
    The hero (balloons + title + countdown) keeps the Figma composition and scales as one piece.
    =================================================================================================== */
@@ -302,7 +188,6 @@
   .sketchup_promo_container .promo-bf .promo-more:focus-visible { outline-color: var(--bf-lime); }
   /* terms box covers only the bottom row of the grid (its top is set by the script from the last card); upper cards stay visible */
   .sketchup_promo_container .promo-bf .promo-terms { top: auto; bottom: 0; min-height: 0; max-height: none; }
-  .sketchup_promo_container .promo-bf .promo-bottom.is-terms-open .promo-cards { visibility: visible; }
 
   /* mobile (banner ≤ 764px): hero scales to the width, cards 2 columns, notes full width */
   @container sketchup-promo (max-width: 764px) {
