@@ -1,0 +1,679 @@
+/* SketchUp Pro detail page — every rule is scoped to .sketchup_detail_container.
+   Same system as common/tekla.css:
+   - fluid sizes follow the CONTAINER width (--sk-w): min @360px → Figma value @836px (design width)
+   - mobile layout when the container is ≤ 764px (@container), with a 1200px @media fallback
+     for browsers without container queries (≈ 764px column on the site: 400px right column + 36px gap) */
+  @property --sk-w { syntax: '<length>'; inherits: true; initial-value: 836px; }
+
+  .sketchup_detail_container {
+    --dark-blue: #003054;
+    --primary: #0063a3;
+    --primary-pale: #dcedf9;
+    --accent: #6a6e79;
+    --secondary: #fbad26;
+    --amber: #fbad26;
+    --neutral: #f5f5f8;
+    --base-page: #fbfbfb;
+    --gray-50: #cbcdd6;
+    --ink: #171c1e;
+    --ink-2: #0d1b2a;
+    --sky: #019aeb;
+  }
+  .sketchup_detail_container > * {
+    --sk-w: min(100vw, 836px);  /* fallback for browsers without container units */
+    --layout: desktop;
+    --inner-max: 1200px;  /* max width of each section's content (.sec-inner) */
+    /* ---- type scale: 10 sizes only. PC value at 836px+ → mobile value at 360px, fluid in between.
+       Tags carry them: h1–h6 and p; .lead / .small / .caption for text that isn't body size. ---- */
+    --fs-h1: clamp(32px, 32px + 20 * (var(--sk-w) - 360px) / 476, 52px);       /* page title (hero) */
+    --fs-h2: clamp(26px, 26px + 14 * (var(--sk-w) - 360px) / 476, 40px);       /* section titles */
+    --fs-h3: clamp(22px, 22px + 10 * (var(--sk-w) - 360px) / 476, 32px);       /* large card titles */
+    --fs-h4: clamp(19px, 19px + 6 * (var(--sk-w) - 360px) / 476, 25px);        /* card titles */
+    --fs-h5: clamp(18px, 18px + 6 * (var(--sk-w) - 360px) / 476, 24px);        /* sub-titles, kicker */
+    --fs-h6: clamp(16px, 16px + 4 * (var(--sk-w) - 360px) / 476, 20px);        /* small titles, buttons, table labels */
+    --fs-lead: clamp(17px, 17px + 5 * (var(--sk-w) - 360px) / 476, 22px);      /* intro / emphasised paragraphs (.lead) */
+    --fs-body: clamp(15px, 15px + 3 * (var(--sk-w) - 360px) / 476, 18px);      /* body text (p) */
+    --fs-small: clamp(14px, 14px + 2 * (var(--sk-w) - 360px) / 476, 16px);     /* secondary text (.small) */
+    --fs-caption: clamp(13px, 13px + 1 * (var(--sk-w) - 360px) / 476, 14px);   /* chips, labels, notes (.caption) */
+    /* line heights: headings stay tight; text loosens on wide layouts and tightens on mobile */
+    --lh-heading: 1.2;
+    --lh-subhead: 1.3;
+    --lh-text: 1.4;
+    --lh-ui: 1.2;
+    --pad-120: clamp(64px, 64px + 56 * (var(--sk-w) - 360px) / 476, 120px);
+    --pad-80: clamp(48px, 48px + 32 * (var(--sk-w) - 360px) / 476, 80px);
+    --pad-64: clamp(40px, 40px + 24 * (var(--sk-w) - 360px) / 476, 64px);
+    --px-40: clamp(16px, 16px + 24 * (var(--sk-w) - 360px) / 476, 40px);
+    --px-30: clamp(16px, 16px + 14 * (var(--sk-w) - 360px) / 476, 30px);
+    --gap-64: clamp(40px, 40px + 24 * (var(--sk-w) - 360px) / 476, 64px);
+    --gap-32: clamp(20px, 20px + 12 * (var(--sk-w) - 360px) / 476, 32px);
+    --gap-24: clamp(16px, 16px + 8 * (var(--sk-w) - 360px) / 476, 24px);
+    --sec-gap: clamp(16px, 16px + 8 * (var(--sk-w) - 360px) / 476, 24px);
+    --card-30: clamp(20px, 20px + 10 * (var(--sk-w) - 360px) / 476, 30px);
+    --card-24: clamp(18px, 18px + 6 * (var(--sk-w) - 360px) / 476, 24px);
+    --p-20: clamp(16px, 16px + 4 * (var(--sk-w) - 360px) / 476, 20px);
+    --p-32: clamp(20px, 20px + 12 * (var(--sk-w) - 360px) / 476, 32px);
+    --r16: clamp(8px, 8px + 8 * (var(--sk-w) - 360px) / 476, 16px);
+    --r24: clamp(12px, 12px + 12 * (var(--sk-w) - 360px) / 476, 24px);
+    --r40: clamp(24px, 24px + 16 * (var(--sk-w) - 360px) / 476, 40px);
+    --r12: clamp(8px, 8px + 4 * (var(--sk-w) - 360px) / 476, 12px);
+    --why-icon: clamp(120px, 120px + 76 * (var(--sk-w) - 360px) / 476, 196px);
+    --eco-icon: clamp(52px, 52px + 18 * (var(--sk-w) - 360px) / 476, 70px);
+    --closing-h: clamp(260px, 260px + 277 * (var(--sk-w) - 360px) / 476, 537px);
+    --logo-w: clamp(220px, 220px + 134 * (var(--sk-w) - 360px) / 476, 354px);
+  }
+  .sketchup_detail_container, .sketchup_detail_container * { box-sizing: border-box; margin: 0; padding: 0; }
+  .sketchup_detail_container {
+    width: 100%;  /* must be definite: the block sizes its contents from its own width (container), and the store's wrapper would otherwise shrink it to 0 */
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    color: var(--ink);
+    font-family: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+    word-break: keep-all;
+    -webkit-text-size-adjust: 100%;
+    container: sketchup / inline-size;
+  }
+  .sketchup_detail_container > * + * { margin-top: var(--sec-gap); }
+  @supports (width: 1cqw) {
+    .sketchup_detail_container > * { --sk-w: 100cqw; }
+  }
+  .sketchup_detail_container img { display: block; max-width: 100%; }
+  .sketchup_detail_container ul, .sketchup_detail_container ol { list-style: none; }
+  .sketchup_detail_container .section { border-radius: var(--r24); overflow: hidden; }
+  /* full-width use (detail ≥ 1400px, e.g. a page without the right column): square section edges */
+  @container sketchup (min-width: 1400px) {
+    .sketchup_detail_container .section { border-radius: 0; }
+  }
+  /* section background spans the full width; its content is capped at 1000px and centred.
+     .sec-inner takes over the section's own flex layout (direction / alignment / gap). */
+  .sketchup_detail_container section > .sec-inner {
+    display: inherit; flex-direction: inherit; flex-wrap: inherit;
+    align-items: inherit; justify-content: inherit; gap: inherit;
+    width: 100%; max-width: var(--inner-max); margin-left: auto; margin-right: auto;
+  }
+  /* ---- typography by tag (sizes from the type scale above) ---- */
+  .sketchup_detail_container h1 { font-size: var(--fs-h1); line-height: var(--lh-heading); font-weight: 600; color: var(--dark-blue); text-align:center; letter-spacing:-2px; }
+  .sketchup_detail_container h2 { font-size: var(--fs-h2); line-height: var(--lh-heading); font-weight: 600; color: var(--dark-blue); }
+  .sketchup_detail_container h3 { font-size: var(--fs-h3); line-height: var(--lh-heading); font-weight: 600; }
+  .sketchup_detail_container h4 { font-size: var(--fs-h4); line-height: var(--lh-heading); font-weight: 600; }
+  .sketchup_detail_container h5 { font-size: var(--fs-h5); line-height: var(--lh-heading); font-weight: 600; }
+  .sketchup_detail_container h6 { font-size: var(--fs-h6); line-height: var(--lh-subhead); font-weight: 600; }
+  .sketchup_detail_container p { font-size: var(--fs-body); line-height: var(--lh-text); }
+  .sketchup_detail_container .lead { font-size: var(--fs-lead); line-height: var(--lh-text); }
+  .sketchup_detail_container .small { font-size: var(--fs-small); line-height: var(--lh-text); }
+  .sketchup_detail_container .caption { font-size: var(--fs-caption); line-height: var(--lh-ui); }
+  .sketchup_detail_container h1 .light, .sketchup_detail_container h2 .light { font-weight: 400; }
+  /* inline text keeps its parent's line height, baseline and inline display — the host site's CSS gives
+     b/span/br… their own font-family, line-height (1.5), vertical-align: middle and (span/strong/em…) inline-block,
+     which pulls heading lines apart. :where() keeps this at class level, so component rules still win. */
+  .sketchup_detail_container :where(span, b, strong, em, i, small, a, br, cite, q, label, code, del, ins, dfn) { font-family: inherit; line-height: inherit; vertical-align: baseline; }
+  .sketchup_detail_container :where(span, strong, em, cite, q, label, code, del, ins, dfn) { display: inline; }
+  .sketchup_detail_container .kicker {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 8px 20px 6px; border-radius: 500px; background: var(--amber);
+    font-size: var(--fs-h6); font-weight: 600; line-height: var(--lh-ui); letter-spacing: -0.027em; color: var(--dark-blue);
+  }
+
+  /* 1. Hero */
+  .sketchup_detail_container .hero { background: #f5fbff; padding: var(--pad-120) var(--px-40); display: flex; flex-direction: column; gap: var(--gap-32); }
+  .sketchup_detail_container .hero-head { display: flex; flex-direction: column; align-items: center; gap: var(--gap-24); text-align: center; }
+  .sketchup_detail_container .hero h1 { letter-spacing: -2px; }
+  .sketchup_detail_container .hero-sub { letter-spacing: -0.5px; color: var(--accent); font-weight: 400; }
+  .sketchup_detail_container .hero-sub b { font-weight: 600; }
+  /* highlighted phrase in the hero intro (underlined, primary blue) */
+  .sketchup_detail_container .hero-sub .hl { font-weight: 600; color: var(--primary); text-decoration: underline; text-underline-offset: 0.18em; text-decoration-thickness: 2px; }
+  .sketchup_detail_container .steps { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 24px 0; }
+  .sketchup_detail_container .step { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
+  /* step box = CSS (sky-blue rounded square); the line drawing inside is the SVG.
+     Fits its column exactly (179px max), on PC and in the 2 × 2 mobile grid */
+  .sketchup_detail_container .step-box {
+    flex: none; width: min(179px, 100%); aspect-ratio: 1 / 1;
+    border-radius: 22.35%;            /* 40 / 179 — scales with the box */
+    background: var(--primary-pale); overflow: hidden;
+  }
+  .sketchup_detail_container .step-box img { width: 100%; height: 100%; }
+  .sketchup_detail_container .step .t { color: #000; }
+  .sketchup_detail_container .step .s { font-weight: 500; line-height: var(--lh-subhead); letter-spacing: -0.48px; color: var(--accent); margin-top: 4px; }
+  .sketchup_detail_container .steps .arrow { width: 24px; height: 95px; flex: none; }
+
+  /* 2. Pain points */
+  .sketchup_detail_container .pains { background: var(--base-page); padding: var(--pad-120) var(--px-30); display: flex; flex-direction: column; align-items: center; gap: var(--gap-64); }
+  .sketchup_detail_container .pains h2 { text-align: center; }
+  .sketchup_detail_container .hooks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; width: 100%; }
+  .sketchup_detail_container .hook { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+  /* cards in the same row share one height (card row / answer row via subgrid); the picture sits at the card's bottom */
+  @supports (grid-template-rows: subgrid) {
+    .sketchup_detail_container .hooks { grid-auto-rows: auto; row-gap: 0; }
+    .sketchup_detail_container .hook { display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 16px; }
+  }
+  .sketchup_detail_container .hook-card > .hook-img { margin-top: auto; }
+  .sketchup_detail_container .hook-card {
+    background: #fff; border: 1px solid var(--gray-50); border-radius: 16px; overflow: hidden;
+    padding: 16px 0 0 16px; display: flex; flex-direction: column; isolation: isolate;
+  }
+  .sketchup_detail_container .hook-q { position: relative; z-index: 2; display: flex; flex-direction: column; gap: 8px; margin-bottom: -20px; font-weight: 500; }
+  .sketchup_detail_container .hook-q .q { line-height: var(--lh-subhead); letter-spacing: -0.5px; color: var(--accent); }
+  .sketchup_detail_container .hook-q .who { letter-spacing: -0.48px; color: var(--primary); }
+  .sketchup_detail_container .hook-img { position: relative; z-index: 1; aspect-ratio: 248 / 144; overflow: hidden; mix-blend-mode: multiply; }
+  .sketchup_detail_container .hook-img img { position: absolute; max-width: none; }
+  /* .hooks-fit (Pro Scan): image runs to the card's left edge and keeps its own ratio (no crop box) */
+  .sketchup_detail_container .hooks-fit .hook-card { padding-left: 0; }
+  .sketchup_detail_container .hooks-fit .hook-q { padding-left: 16px; padding-right: 16px; }
+  .sketchup_detail_container .hooks-fit .hook-img { aspect-ratio: auto; }
+  .sketchup_detail_container .hooks-fit .hook-img img { position: static; width: 100%; height: auto; }
+  .sketchup_detail_container .hook-a { padding: 0 3px 24px 3px; letter-spacing: -0.48px; color: var(--dark-blue); font-weight: 400; }
+  .sketchup_detail_container .hook-a b { font-weight: 600; }
+  /* .hooks-long (Pro Advanced, Studio): longer copy — smaller, slightly tighter text and the image starts below the text (no overlap) */
+  .sketchup_detail_container .hooks-long .hook-q { margin-bottom: 12px; }
+  .sketchup_detail_container .hooks-long .hook-q .q { font-size: calc(var(--fs-lead) - 3px); line-height: 1.22; }
+
+
+  /* 3. Why SketchUp */
+  .sketchup_detail_container .why { padding-top: var(--pad-120); display: flex; flex-direction: column; gap: var(--gap-64); }
+  .sketchup_detail_container .why h2 { text-align: center; }
+  .sketchup_detail_container .why h1 .sky { color: var(--sky); }
+  /* carousel title row: title + prev/next buttons (buttons only in the wide swipe layout) */
+  .sketchup_detail_container .carousel-nav { display: none; gap: 12px; flex: none; }
+  .sketchup_detail_container .carousel-btn {
+    width: 48px; height: 48px; border: 0; border-radius: 50%; padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    background: rgba(23, 28, 30, 0.1); color: #5c5f66; cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .sketchup_detail_container .carousel-btn svg { fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+  .sketchup_detail_container .carousel-btn:hover { background: rgba(23, 28, 30, 0.16); }
+  .sketchup_detail_container .carousel-btn:focus-visible { outline: 2px solid var(--dark-blue); outline-offset: 2px; }
+  .sketchup_detail_container .carousel-btn:disabled { background: rgba(23, 28, 30, 0.04); color: #b9bbc1; cursor: default; }
+  @container sketchup (min-width: 1200px) {
+    .sketchup_detail_container .carousel-head { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .sketchup_detail_container .carousel-nav { display: flex; }
+  }
+  .sketchup_detail_container .why-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .sketchup_detail_container .why-card { background: var(--neutral); border-radius: var(--r24); padding: var(--card-30); display: flex; flex-direction: column; gap: 16px; }
+  .sketchup_detail_container .why-card .icon { height: var(--why-icon); display: flex; align-items: center; }
+  .sketchup_detail_container .why-card .icon img { height: 100%; width: auto; max-width: none; }
+  .sketchup_detail_container .why-card .t { color: var(--dark-blue); }
+  .sketchup_detail_container .why-card .d { font-size: var(--fs-body); font-weight: 500; letter-spacing: -0.48px; color: var(--accent); margin-top: 16px; }
+  /* wide detail page (≥ 1200px): title left, cards in one row (400px each) that swipes sideways.
+     The row spans the full page width (cards stay visible to both edges while swiping) but starts
+     and snaps in line with the content edge. */
+  @container sketchup (min-width: 1200px) {
+    .sketchup_detail_container .why { padding-bottom: var(--pad-120); }
+    .sketchup_detail_container .why h2 { text-align: left; }
+    .sketchup_detail_container .why-grid {
+      display: flex; gap: 24px;
+      /* bleed to both page edges; the padding / scroll-padding keep the cards lined up with the content */
+      --bleed: calc((100cqw - min(100cqw, var(--inner-max))) / 2);  /* gap between content and page edge */
+      margin-left: calc(-1 * var(--bleed)); margin-right: calc(-1 * var(--bleed));
+      padding-left: var(--bleed); padding-right: var(--bleed); scroll-padding-left: var(--bleed);
+      overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+      scrollbar-width: none; -webkit-user-select: none; user-select: none;
+    }
+    .sketchup_detail_container .why-grid::-webkit-scrollbar { display: none; }
+    .sketchup_detail_container .why-grid.is-dragging { scroll-snap-type: none; }
+    .sketchup_detail_container .why-card { flex: 0 0 400px; scroll-snap-align: start; }
+    .sketchup_detail_container .why-card img { -webkit-user-drag: none; pointer-events: none; }
+  }
+
+  /* Pro Scan page (pro scan/index.html) — hero formula: [SketchUp Pro] + [Scan Essentials] → SketchUp Pro Scan */
+  .sketchup_detail_container .kicker.kicker-ink { color: #000; }
+  .sketchup_detail_container .formula { display: flex; flex-direction: column; align-items: center; gap: 14px; padding: 24px 0 6px; }
+  .sketchup_detail_container .formula-row { display: flex; align-items: center; justify-content: center; gap: 12px; }
+  .sketchup_detail_container .formula-op { flex: none; }
+  .sketchup_detail_container .formula-card { display: flex; align-items: center; justify-content: center; gap: 12px; min-width: 264px; background: var(--primary-pale); border-radius: var(--r24); padding: 20px 24px; }
+  /* no visible icon box here (it was the card colour): the icon itself sits in the padding, so the content is centred in the card.
+     Icon widths relative to --eco-icon, as in Figma: SketchUp 69%, wide icons (Scan Essentials, Revit Importer) 90% (Figma 83% read too small), V-Ray 73% */
+  /* icon box: same look as the included-products cards (.product-main .ico) — neutral rounded square, icon centred with room around it */
+  .sketchup_detail_container .formula-card .ico {
+    flex: none; width: var(--eco-icon); height: var(--eco-icon); border-radius: 21%;
+    background: var(--neutral); display: flex; align-items: center; justify-content: center;
+  }
+  .sketchup_detail_container .formula-card .ico img { width: 56%; height: auto; }
+  .sketchup_detail_container .formula-card .ico img:is([src$="ico-scan.svg"], [src$="ico-revit.svg"]) { width: 70%; }
+  .sketchup_detail_container .formula-card .ico img[src$="ico-vray.svg"] { width: 60%; }
+  .sketchup_detail_container .link-info .ico img:is([src$="ico-scan.svg"], [src$="ico-revit.svg"]) { width: 90%; }
+  .sketchup_detail_container .link-info .ico img[src$="ico-vray.svg"] { width: 73%; }
+  .sketchup_detail_container .formula-card .t { font-size: clamp(18px, 18px + 5 * (var(--sk-w) - 360px) / 476, 23px); color: var(--dark-blue); letter-spacing: -0.04em; line-height: 1.1}
+  .sketchup_detail_container .formula-card.is-base { background: rgba(1, 154, 235, 0.3); }  /* the SketchUp Pro base card */
+  .sketchup_detail_container .formula-card .s { font-size: var(--fs-small); font-weight: 400; line-height: var(--lh-ui); color: var(--accent); margin-top: 2px; }
+  /* rows of three cards (Pro Advanced, Studio): the cards share the row; between 765–999px the icon goes above the text */
+  /* two cards in a row (card + card): equal widths = the wider card's width (grid 1fr tracks in a content-sized row) */
+  .sketchup_detail_container .formula-row:not(.is-3) { display: grid; grid-template-columns: 1fr auto 1fr; }
+  .sketchup_detail_container .formula-row.is-3 { align-self: stretch; }
+  .sketchup_detail_container .formula-row.is-3 .formula-card { flex: 1 1 0; min-width: 0; padding: 20px 16px; }
+  @container sketchup (min-width: 765px) and (max-width: 999px) {
+    .sketchup_detail_container .formula-row.is-3 .formula-card { flex-direction: column; align-items: flex-start; align-self: stretch; justify-content: flex-start; }
+  }
+  /* result: SketchUp logo (svg) + "Pro Scan" in light type, sized from the logo height (54px on PC) */
+  .sketchup_detail_container .formula-result {
+    --logo-h: clamp(28px, 28px + 26 * (var(--sk-w) - 360px) / 476, 54px);
+    display: flex; align-items: center; gap: calc(var(--logo-h) * 0.22); max-width: 100%;
+    padding: calc(var(--logo-h) * 0.3) calc(var(--logo-h) * 0.6); border-radius: var(--r24); background: var(--primary); color: #fff;
+  }
+  .sketchup_detail_container .formula-result.is-long { --logo-h: clamp(21px, 21px + 33 * (var(--sk-w) - 360px) / 476, 54px); }  /* long product name (Pro Civil Contractor): fits a phone */
+  .sketchup_detail_container .formula-result img { flex: none; height: var(--logo-h); width: auto; }
+  .sketchup_detail_container .formula-result span { font-size: calc(var(--logo-h) * 0.89); font-weight: 300; line-height: 1; letter-spacing: -0.06em; white-space: nowrap; }
+
+  /* Pro Scan page — Scan Essentials */
+  .sketchup_detail_container .scan-ess { background: var(--primary); padding: calc(var(--pad-120) / 2) var(--px-30) var(--pad-120);  /* top = half the section padding */ display: flex; flex-direction: column; gap: var(--gap-64); }
+  .sketchup_detail_container .scan-head { display: flex; flex-direction: column; align-items: flex-start; gap: var(--gap-24); }
+  .sketchup_detail_container .scan-head .kicker { background: var(--secondary); color: #000; }
+  /* intro under the title (h3 + text), and the full-width cover image on top of a section (.has-cover) */
+  .sketchup_detail_container .scan-intro { display: flex; flex-direction: column; gap: 16px; color: #fff; }
+  .sketchup_detail_container .scan-intro h3 { font-size: clamp(20px, 20px + 8 * (var(--sk-w) - 360px) / 476, 28px); line-height: var(--lh-subhead); }
+  .sketchup_detail_container .scan-intro p { font-weight: 400; line-height: 1.5; letter-spacing: -0.5px; }
+  .sketchup_detail_container .scan-ess.has-cover { padding-top: 0; }
+  .sketchup_detail_container .scan-cover { margin: 0 calc(-1 * var(--px-30)); aspect-ratio: 951 / 534; overflow: hidden; }
+  .sketchup_detail_container .scan-cover img { width: 100%; height: 100%; object-fit: cover; }
+  .sketchup_detail_container .scan-head h1 { color: #fff; text-align: left; font-size: clamp(36px, 36px + 28 * (var(--sk-w) - 360px) / 476, 64px); line-height: 1; }  /* English-only title: bigger than h1 (64 → 36 on mobile) and tighter than the Korean 1.2 */
+  .sketchup_detail_container .scan-feats { display: flex; flex-direction: column; gap: var(--gap-64); }
+  .sketchup_detail_container .scan-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px 16px; }  /* rows 16 · columns 40 */
+  .sketchup_detail_container .scan-feat { display: flex; flex-direction: column; gap: 20px; }
+  .sketchup_detail_container .scan-feat .ph { aspect-ratio: 486 / 298; border-radius: var(--r16); overflow: hidden; }
+  .sketchup_detail_container .scan-feat .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .sketchup_detail_container .scan-feat .txt { display: flex; flex-direction: column; gap: 8px; width: 90%; max-width: 540px; }
+  .sketchup_detail_container .scan-feat :is(h3, h4) { color: #fff; letter-spacing: -0.9px; }
+  .sketchup_detail_container .scan-feat p { font-weight: 400; letter-spacing: -0.5px; color: #fff; }
+  /* .is-pale: light-blue variant (Pro Advanced / Studio feature sections) */
+  .sketchup_detail_container .scan-ess.is-pale { background: var(--primary-pale); }
+  .sketchup_detail_container .is-pale .scan-head h1,
+  .sketchup_detail_container .is-pale .scan-feat :is(h3, h4) { color: var(--dark-blue); }
+  .sketchup_detail_container .is-pale .scan-feat p { color: var(--accent); }
+  .sketchup_detail_container .is-pale .scan-intro h3 { color: var(--dark-blue); }
+  .sketchup_detail_container .is-pale .scan-intro p { color: var(--accent); }
+  /* .is-fold (light sections): only kicker + title until clicked; the rest slides open (grid 0fr → 1fr) and stays open until × */
+  .sketchup_detail_container .is-fold > .sec-inner { gap: 0; }
+  .sketchup_detail_container .fold-body { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.5s ease; }
+  .sketchup_detail_container .fold-inner {
+    min-height: 0; overflow: hidden; display: flex; flex-direction: column; gap: var(--gap-64);
+    visibility: hidden; transition: visibility 0s linear 0.5s;  /* hidden content stays out of tab order / reading until opened */
+  }
+  .sketchup_detail_container .fold-inner > :first-child { margin-top: var(--gap-24); }
+  .sketchup_detail_container .fold-inner > .scan-intro:first-child { margin-top: 8px; }  /* text right under the h3 that stays visible above */
+  .sketchup_detail_container .is-fold.is-open .fold-body { grid-template-rows: 1fr; }
+  .sketchup_detail_container .is-fold.is-open .fold-inner { visibility: visible; transition-delay: 0s; }
+  /* closed: tighter top/bottom padding (open = the normal section padding) */
+  .sketchup_detail_container .is-fold { position: relative; transition: padding 0.5s ease; }
+  .sketchup_detail_container .is-fold:not(.is-open) { padding-top: var(--px-30); padding-bottom: var(--px-30); }  /* same as the side padding */
+  .sketchup_detail_container .is-fold:not(.is-open) .scan-cover { display: none; }
+  /* closed sections open on click (no button); keyboard focus ring on the title block */
+  .sketchup_detail_container .is-fold:not(.is-open) { cursor: pointer; }
+  /* top-right toggle: ▾ while closed (shows it can open), × while open */
+  .sketchup_detail_container .fold-close {
+    position: absolute; top: var(--px-30); right: var(--px-30); z-index: 2;
+    width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0, 48, 84, 0.08); color: var(--dark-blue); cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .sketchup_detail_container .fold-close:hover { background: rgba(0, 48, 84, 0.16); }
+  .sketchup_detail_container .fold-close:focus-visible { outline: 2px solid var(--dark-blue); outline-offset: 2px; }
+  .sketchup_detail_container .fold-close .i-close,
+  .sketchup_detail_container .is-open > .fold-close .i-open { display: none; }
+  .sketchup_detail_container .is-open > .fold-close .i-close { display: block; }
+  .sketchup_detail_container .fold-close svg { fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+  .sketchup_detail_container .is-fold .scan-head:focus-visible { outline: 2px solid var(--dark-blue); outline-offset: 6px; border-radius: 8px; }
+
+  /* Pro Scan page — link bars under Scan Essentials: [icon + text] ··· [button] */
+  .sketchup_detail_container .link-bars { padding-top: clamp(32px, 32px + 24 * (var(--sk-w) - 360px) / 476, 56px); display: flex; flex-direction: column; gap: var(--gap-24); }
+  .sketchup_detail_container .link-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px 24px; padding: var(--card-24); border-radius: var(--r24); background: var(--neutral); }
+  .sketchup_detail_container .link-bar.is-new { background: var(--sky); }
+  .sketchup_detail_container .link-info { display: flex; align-items: center; gap: 13px; min-width: 0; }
+  .sketchup_detail_container .link-info .ico {
+    flex: none; width: var(--eco-icon); height: var(--eco-icon); border-radius: 27%; background: #fff;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sketchup_detail_container .link-info .ico img { width: 69%; height: auto; }
+  .sketchup_detail_container .link-info .ico-new { font-size: calc(var(--eco-icon) * 0.314); font-weight: 800; line-height: 0.91; letter-spacing: -0.03em; color: var(--primary); text-align: center; }
+  .sketchup_detail_container .link-info .t { color: #000; letter-spacing: -1px; }
+  .sketchup_detail_container .link-info .s { font-weight: 500; line-height: var(--lh-ui); color: var(--accent); margin-top: 4px; }
+  .sketchup_detail_container .is-new .link-info .t { color: #fff; }
+  .sketchup_detail_container .is-new .link-info .s { color: var(--primary-pale); }
+  .sketchup_detail_container .is-new .btn { background: #005f9e; }
+  .sketchup_detail_container .btn.btn-arrow { width: auto; flex: none; gap: 10px; white-space: nowrap; }
+  .sketchup_detail_container .btn-arrow svg { flex: none; fill: none; stroke: currentColor; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* 4. New features */
+  .sketchup_detail_container .news { background: var(--primary); padding: var(--pad-120) var(--px-30) var(--px-30);  /* bottom = side padding below 1400px */ display: flex; flex-direction: column; gap: var(--gap-64); }
+  @container sketchup (min-width: 1400px) {
+    .sketchup_detail_container .news { padding-bottom: var(--pad-120); }
+  }
+  .sketchup_detail_container .news-head { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .sketchup_detail_container .news-head .kicker { background: var(--secondary); color: #000; }
+  .sketchup_detail_container .news-title { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }  /* title + intro line, kept close */
+  .sketchup_detail_container .news-title h1 { text-align: left; }
+  .sketchup_detail_container .news-head .lead { letter-spacing: -0.5px; color: #fff; font-weight: 500; }
+  /* news section on the blue background (Figma 173:3954): white titles, light first button, light carousel arrows */
+  .sketchup_detail_container .news h1, .sketchup_detail_container .news h2, .sketchup_detail_container .news h3 { color: #fff; }
+  .sketchup_detail_container .news .btn:not(.btn-sky) { background: var(--primary-pale); color: var(--primary); }
+  .sketchup_detail_container .news .carousel-btn { background: rgba(255, 255, 255, 0.18); color: #fff; }
+  .sketchup_detail_container .news .carousel-btn:hover { background: rgba(255, 255, 255, 0.3); }
+  .sketchup_detail_container .news .carousel-btn:focus-visible { outline-color: #fff; }
+  .sketchup_detail_container .news .carousel-btn:disabled { background: rgba(255, 255, 255, 0.07); color: rgba(255, 255, 255, 0.35); }
+  .sketchup_detail_container .news-head .lead b { font-weight: 600; }
+  .sketchup_detail_container .btn.btn-sky { background: var(--sky); }  /* #019aeb */
+  .sketchup_detail_container .btn-row { align-self: stretch; display: flex; flex-wrap: wrap; gap: 8px; margin-top:8px; }
+  .sketchup_detail_container .news-block { display: flex; flex-direction: column; gap: 16px; }
+  .sketchup_detail_container .news-list { display: flex; flex-direction: column; gap: 16px; }
+  .sketchup_detail_container .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .sketchup_detail_container .chips li { border: 1px solid currentColor; border-radius: 500px; padding: 4px 8px; font-size: var(--fs-caption); font-weight: 500; line-height: var(--lh-ui); white-space: nowrap; letter-spacing:0; }
+  .sketchup_detail_container .improve-card {
+    position: relative; overflow: hidden; border-radius: var(--r12);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    aspect-ratio: 776 / 227; min-height: 170px;
+  }
+  .sketchup_detail_container .improve-card.is-lead { aspect-ratio: 16 / 9; }
+  /* hover/tap makes a card the lead (big) one. aspect-ratio can't animate, so where container
+     units exist the height is computed from the list width instead and transitions smoothly. */
+  @supports (container-type: inline-size) {
+    .sketchup_detail_container .news-list { container-type: inline-size; }
+    .sketchup_detail_container .improve-card {
+      --ratio: calc(227 / 776);
+      aspect-ratio: auto; height: max(var(--min-h, 216px), 100cqw * var(--ratio));  /* --min-h: collapsed height that fits the text */
+      min-height: min-content;  /* never shorter than its text (card grows instead of clipping) */
+      transition: height 0.5s ease;
+    }
+    /* min-content would make a growing card jump straight to its end height; the lead card is
+       always tall enough for its text, so it doesn't need it and grows smoothly */
+    .sketchup_detail_container .improve-card.is-lead { --ratio: calc(9 / 16); min-height: 0; }
+    /* new-feature cards carry an extra chip row: collapsed height that already fits the text */
+  }
+  /* image fitted to the card WIDTH and centred (center center): opening/closing a card only reveals
+     more or less of it (no zoom). Only if the card gets taller than the image itself does it scale
+     up to cover, still centred. */
+  .sketchup_detail_container .improve-card > img,
+  .sketchup_detail_container .improve-card > video {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: 100%; height: auto; min-height: 100%; object-fit: cover; object-position: center center;
+  }
+  /* embedded video (Vimeo iframe, 16:9) — same behaviour: card width, centred, grows to cover only when
+     the card is taller than the video. The image underneath shows until the player loads. */
+  .sketchup_detail_container .improve-card > .card-video {
+    /* video ratio: 16:9 by default, or set per card with style="--vw: 426; --vh: 230;" */
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); aspect-ratio: var(--vw, 16) / var(--vh, 9); width: auto;
+    height: 100%; height: max(100%, 100cqw * var(--vh, 9) / var(--vw, 16));  /* 100cqw = card width (the list is the container) */
+    overflow: hidden; pointer-events: none;
+    opacity: 0; transition: opacity 0.6s ease;  /* shown once the player is actually playing (script) */
+  }
+  .sketchup_detail_container .improve-card > .card-video.is-playing { opacity: 1; }
+  .sketchup_detail_container .improve-card > .card-video iframe { display: block; width: 100%; height: 100%; border: 0; }
+  /* per-card media anchor: add .media-top-left to a card to pin its image/video to the top-left instead of the centre */
+  .sketchup_detail_container .improve-card.media-top-left > img,
+  .sketchup_detail_container .improve-card.media-top-left > video,
+  .sketchup_detail_container .improve-card.media-top-left > .card-video { left: 0; top: 0; transform: none; object-position: left top; }
+  /* wide detail page (≥ 1200px): improvement cards in one 4:3 row that swipes sideways like the
+     why cards (full page width, snapping in line with the content; no lead/size change) */
+  @container sketchup (min-width: 1200px) {
+    .sketchup_detail_container .improve-list {
+      flex-direction: row; gap: 24px;
+      /* gap between content and page edge (news section has --px-30 side padding) */
+      --bleed: calc((var(--sk-w) - min(var(--sk-w) - 2 * var(--px-30), var(--inner-max))) / 2);
+      margin-left: calc(-1 * var(--bleed)); margin-right: calc(-1 * var(--bleed));
+      padding-left: var(--bleed); padding-right: var(--bleed); scroll-padding-left: var(--bleed);
+      overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory;
+      scrollbar-width: none; -webkit-user-select: none; user-select: none;
+    }
+    .sketchup_detail_container .improve-list::-webkit-scrollbar { display: none; }
+    .sketchup_detail_container .improve-list.is-dragging { scroll-snap-type: none; }
+    .sketchup_detail_container .improve-card,
+    .sketchup_detail_container .improve-card.is-lead {
+      flex: 0 0 560px; aspect-ratio: auto; height: auto; min-height: 420px;  /* 4:3 */
+      transition: none; scroll-snap-align: start;
+    }
+    .sketchup_detail_container .improve-card > img,
+    .sketchup_detail_container .improve-card > video { -webkit-user-drag: none; pointer-events: none; }
+    .sketchup_detail_container .improve-card > .card-video { height: 100%; }  /* fixed 560px cards here: cover by height */
+  }
+  .sketchup_detail_container .improve-text {
+    position: relative; flex: 1 1 auto; display: flex; flex-direction: column; justify-content: flex-end; gap: 12px;
+    padding: var(--pad-64, 40px) var(--p-32);
+    background: linear-gradient(179.87deg, rgba(0, 48, 84, 0) 0.163%, rgba(0, 48, 84, 0.15) 23.165%, #003054 99.837%);
+    color: #fff;
+  }
+  .sketchup_detail_container .improve-text { padding-top: 40px; padding-bottom: 40px; }
+  .sketchup_detail_container .improve-text .chip { align-self: flex-start; background: #fff; color: var(--primary); border-radius: 50px; padding: 4px 12px; font-size: var(--fs-caption); font-weight: 600; line-height: var(--lh-ui); }
+  .sketchup_detail_container .improve-text .t { letter-spacing: -0.8px; }
+  .sketchup_detail_container .improve-text .d { font-weight: 500; letter-spacing: -0.48px; max-width: 344px; }
+  .sketchup_detail_container .improve-text .chips { margin-top: 6px; }
+  .sketchup_detail_container .improve-text .chips li { color: var(--primary-pale); }
+
+  /* 5. Included products */
+  .sketchup_detail_container .products { padding-top: var(--pad-80); display: flex; flex-direction: column; gap: var(--gap-32); }
+  .sketchup_detail_container .products-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }  /* rows size to content (Figma fixed 583px made "Extension Warehouse" overflow) */
+  .sketchup_detail_container .product { background: var(--neutral); border-radius: var(--r24); padding: var(--card-24); display: flex; flex-direction: column; gap: 16px; }
+  .sketchup_detail_container .product img { width: var(--eco-icon); height: var(--eco-icon); }
+  .sketchup_detail_container .product .n { color: var(--dark-blue); }
+  .sketchup_detail_container .product .d { font-weight: 500; line-height: var(--lh-subhead); color: var(--accent); margin-top: 4px; }
+  /* Pro Scan page: the added product first, as one full-width row (icon left of the text) */
+  .sketchup_detail_container .product-main { grid-column: 1 / -1; flex-direction: row; align-items: center; background: var(--primary-pale); }
+  .sketchup_detail_container .product-main .ico {
+    --main-icon: clamp(64px, 64px + 26 * (var(--sk-w) - 360px) / 476, 90px);
+    flex: none; width: var(--main-icon); height: var(--main-icon); border-radius: 21%;
+    background: var(--neutral); display: flex; align-items: center; justify-content: center;
+  }
+  /* product cards: more room around the icon inside its box than in the hero cards */
+  .sketchup_detail_container .product-main .ico img { width: 56%; height: auto; }
+  .sketchup_detail_container .product-main .ico img:is([src$="ico-scan.svg"], [src$="ico-revit.svg"]) { width: 70%; }
+  .sketchup_detail_container .product-main .ico img[src$="ico-vray.svg"] { width: 60%; }
+  /* Pro Advanced / Studio: the added products as their own row(s) above the shared grid */
+  .sketchup_detail_container .products-lists { display: flex; flex-direction: column; gap: 16px; }
+  .sketchup_detail_container .products-feature { grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr)); }
+  .sketchup_detail_container .products-feature .product-main { grid-column: auto; }
+  .sketchup_detail_container .product-main.is-col { flex-direction: column; align-items: flex-start; }
+  .sketchup_detail_container .product-main.is-col .ico { --main-icon: var(--eco-icon); }
+  .sketchup_detail_container .product-main.is-col .n { font-size: var(--fs-h6); line-height: var(--lh-subhead); }  /* same title size as the cards below (Figma) */
+
+  /* 6. Plan comparison */
+  .sketchup_detail_container .plans { padding-top: var(--pad-80); display: flex; flex-direction: column; gap: var(--gap-32); }
+  /* the table is 16px wider than its box (border-spacing gutters); clip that empty strip so it can't overflow */
+  /* the 8px border-spacing gutters reach 8px past the content on both sides (scroll box pulled out by -8px);
+     with 6 plan columns a narrow page scrolls the table sideways instead of squeezing the feature column */
+  .sketchup_detail_container .compare-scroll { margin: 0 -8px; overflow-x: auto; }
+  .sketchup_detail_container .plans > .sec-inner { overflow-x: clip; }  /* those 8px never widen the page */
+  .sketchup_detail_container .compare-table { border-collapse: separate; border-spacing: 8px 0; width: 100%; }
+  .sketchup_detail_container .compare-table th, .sketchup_detail_container .compare-table td { text-align: left; vertical-align: middle; }
+  .sketchup_detail_container .compare-table thead th {
+    position: relative; border-top: 1px solid var(--ink); padding: 8px 0; vertical-align: top;
+    font-size: var(--fs-small); font-weight: 600; line-height: var(--lh-subhead); letter-spacing: -0.5px; color: var(--accent); min-width: 80px;
+  }
+  .sketchup_detail_container .compare-table thead th:not(:last-child)::after { content: ""; position: absolute; top: -1px; right: -8px; width: 8px; border-top: 1px solid var(--ink); }
+  .sketchup_detail_container .compare-table thead th:first-child { color: var(--ink); line-height: normal; }
+  .sketchup_detail_container .compare-table thead th small { display: block; font-size: var(--fs-caption); font-weight: 400; margin-top:4px; line-height:1.2 }
+  .sketchup_detail_container .compare-table .col { width: 100px; text-align: center; line-height:1; }
+  .sketchup_detail_container .compare-table th:first-child,
+  .sketchup_detail_container .compare-table td:first-child { min-width: 140px; }
+  .sketchup_detail_container .compare-table .is-pro { background: var(--primary-pale); color: var(--primary); }
+  .sketchup_detail_container .compare-table tbody td { border-top: 1px solid rgba(0, 0, 0, 0.2); padding: 12px 12px 12px 0; }
+  .sketchup_detail_container .compare-table tbody td.col { padding: 8px 0; font-size: var(--fs-small); font-weight: 600; line-height: var(--lh-subhead); letter-spacing: -0.32px; color: var(--gray-50); }
+  .sketchup_detail_container .compare-table tbody td.col.is-pro { color: var(--primary); }
+  .sketchup_detail_container .feat { display: flex; align-items: center; gap: 4px 10px; flex-wrap: wrap; }  /* badge drops under the name when the column is narrow */
+  .sketchup_detail_container .feat .txt b { display: block; font-size: var(--fs-body); font-weight: 500; line-height: var(--lh-subhead); }
+  .sketchup_detail_container .feat .txt span { display: block; font-size: var(--fs-caption); font-weight: 500; line-height: var(--lh-subhead); color: var(--accent); letter-spacing: 0px;}
+  .sketchup_detail_container .badge { flex: none; border: 1.556px solid var(--primary); border-radius: 38.889px; padding: 4px 10px; font-size: var(--fs-small); font-weight: 600; line-height: var(--lh-text); color: var(--primary); white-space: nowrap; }
+  .sketchup_detail_container .dot { display: inline-block; width: 16px; height: 16px; border-radius: 50%; background: var(--gray-50); vertical-align: middle; }
+  .sketchup_detail_container .is-pro .dot { background: var(--primary); }
+  .sketchup_detail_container .dash { display: inline-block; width: 16px; border-top: 1px solid var(--gray-50); vertical-align: middle; }
+  .sketchup_detail_container .is-pro .dash { border-top-color: var(--primary); }
+
+  /* 7–8. Key/value tables (file formats, system requirements) */
+  .sketchup_detail_container .kv { padding-top: var(--pad-80); display: flex; flex-direction: column; gap: var(--gap-32); }
+  .sketchup_detail_container .kv.sysreq { padding-bottom: var(--pad-80); }
+  .sketchup_detail_container .kv-row { display: flex; align-items: flex-start; border-top: 1px solid var(--gray-50); padding: 4px 0; }
+  .sketchup_detail_container .kv-row p { font-size: var(--fs-body); line-height: var(--lh-subhead); }
+  .sketchup_detail_container .kv-row .k { flex: none; width: 176px; padding: 12px 0; font-weight: 600; color: var(--dark-blue); white-space: nowrap; }
+  .sketchup_detail_container .kv-row .v { flex: 1 1 auto; min-width: 0; padding: 12px 0; color: var(--accent); font-weight: 400; }
+  .sketchup_detail_container .kv-row .v.regular { font-weight: 400; font-size: var(--fs-body); }
+  .sketchup_detail_container .export-line { display: grid; grid-template-columns: 2.4em 1fr; font-size: var(--fs-small); }
+  .sketchup_detail_container .export-line + .export-line { margin-top: 4px; }
+  .sketchup_detail_container .export-line b { font-weight: 600; }
+  .sketchup_detail_container .export-line span { font-weight: 400; }
+  .sketchup_detail_container .plans .note,
+  .sketchup_detail_container .kv .note { font-size: var(--fs-small); font-weight: 400; color: var(--accent); }
+
+  /* 9. Notice */
+  .sketchup_detail_container .notice { background: var(--neutral); padding: var(--pad-64) var(--px-40); display: flex; flex-direction: column; align-items: center; gap: 32px; }
+  .sketchup_detail_container .notice-cols { display: flex; gap: 40px; width: 100%; }
+  .sketchup_detail_container .notice-col { flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+  .sketchup_detail_container .notice-col .t { letter-spacing: -0.24px; color: var(--ink); }
+  .sketchup_detail_container .notice-col .rule { width: 20px; border-top: 2px solid var(--accent); }
+  .sketchup_detail_container .notice-col ol { list-style: decimal outside; padding-left: 0.87em; /* numbers ("1. " ≈ 0.87em wide) line up with the title */ font-size: var(--fs-body); line-height: var(--lh-text); letter-spacing: -0.18px; color: var(--ink); }
+  .sketchup_detail_container .notice-col li { font-weight: 600; }
+  .sketchup_detail_container .notice-col li + li { margin-top: 20px; }
+  .sketchup_detail_container .notice-col li span { --lh-detail: 1.3; display: block; font-weight: 400; line-height: var(--lh-detail); color: var(--accent); }
+  .sketchup_detail_container .notice-col a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }  /* e-mail link */
+  /* several detail lines in one item: small bullets (none when there's only one line).
+     Text stays on the item's text line; the bullet hangs outside, a little inside the item number. */
+  .sketchup_detail_container .notice-col li > span:not(:only-of-type) { position: relative; }
+  .sketchup_detail_container .notice-col li > span:first-of-type { margin-top: 8px; }  /* gap under the numbered title */
+  .sketchup_detail_container .notice-col li > span:not(:only-of-type) + span { margin-top: 10px; }
+  .sketchup_detail_container .notice-col li > span:not(:only-of-type)::before {
+    /* right edge lines up with the right edge of the item number's digit (digit ends ≈ 0.44em before the text) */
+    content: ""; position: absolute; left: calc(-0.44em - 0.22em);
+    top: calc((var(--lh-detail) * 1em - 0.22em) / 2);  /* centred on the first text line */
+    width: 0.22em; height: 0.22em; border-radius: 50%; background: currentColor;
+  }
+  .sketchup_detail_container .issue-box { width: 100%; background: var(--base-page); border-radius: 8px; padding: 17px 24px; letter-spacing: -0.19px; }
+  .sketchup_detail_container .issue-box .t { margin-bottom: 6px; color: var(--ink); }
+  .sketchup_detail_container .issue-box p:last-child { font-weight: 500; color: var(--accent); }
+  .sketchup_detail_container .issue-box em { font-style: normal; font-weight: 500; color: var(--sky); }
+  .sketchup_detail_container .btn {
+    display: inline-flex; align-items: center; justify-content: center; width: 256px; max-width: 100%;
+    height: auto; gap: 0; border: 0;  /* the host site's own .btn sets height 56px + a 1px border */
+    padding: 13px 37px; border-radius: 50px; background: var(--primary); color: #fff;
+    font-size: var(--fs-h6); font-weight: 600; line-height: var(--lh-ui); text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+  .sketchup_detail_container .btn:hover,
+  .sketchup_detail_container .btn:focus-visible { opacity: 0.5; }
+
+  /* 10. Closing */
+  .sketchup_detail_container .closing {
+    min-height: var(--closing-h); padding: var(--pad-64) var(--px-30);
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(89, 155, 199, 0.2) 100%);
+  }
+  .sketchup_detail_container .closing img { width: var(--logo-w); height: auto; }
+
+  /* ---------- Mobile layout: container ≤ 764px ---------- */
+  @container sketchup (max-width: 764px) {
+    .sketchup_detail_container > * { --layout: mobile; --lh-text: 1.4; --lh-subhead: 1.25; }
+    .sketchup_detail_container .flow br { display: none; }
+    /* hero steps: 2 × 2 — arrows between 1→2 and 3→4, plus a diagonal 2→3 arrow in the middle.
+       Grid: [step] [arrow] [step] / [diagonal arrow, centred] / [step] [arrow] [step] */
+    .sketchup_detail_container .steps {
+      display: grid; grid-template-columns: 1fr 24px 1fr; gap: 12px 8px; align-items: start;
+      container-type: inline-size;  /* lets the arrows find the box centre (100cqw = list width) */
+    }
+    .sketchup_detail_container .steps .arrow {
+      width: 24px; height: 30px; align-self: start;
+      /* box = min(179px, column width); the arrow's tip sits 15px down the svg */
+      margin-top: calc(min(179px, (100cqw - 40px) / 2) / 2 - 15px);
+    }
+    .sketchup_detail_container .steps .arrow img { width: 24px; height: 95px; max-width: none; }
+    .sketchup_detail_container .steps .arrow:nth-child(4) { grid-column: 1 / -1; justify-self: center; margin-top: 0; }
+    .sketchup_detail_container .steps .arrow:nth-child(4) img { transform: rotate(135deg); transform-origin: 12px 15px; }
+    /* with subgrid each step's box and caption get their own rows (box / caption / box / caption),
+       so the side arrows centre on their box row and the diagonal arrow on the middle of all four boxes */
+    @supports (grid-template-rows: subgrid) {
+      .sketchup_detail_container .steps { grid-template-rows: repeat(4, auto); row-gap: 0; }
+      .sketchup_detail_container .steps .step { display: grid; grid-template-rows: subgrid; grid-row: span 2; gap: 0; justify-items: center; align-items: start; }
+      .sketchup_detail_container .steps .step > :last-child { padding-top: 16px; }
+      .sketchup_detail_container .steps .step:nth-child(-n+3) > :last-child { padding-bottom: 40px; }
+      .sketchup_detail_container .steps .arrow { grid-row: auto; align-self: center; margin-top: 0; }
+      .sketchup_detail_container .steps .arrow:nth-child(2) { grid-area: 1 / 2; }
+      .sketchup_detail_container .steps .arrow:nth-child(4) { grid-area: 1 / 2 / 4 / 3; justify-self: center; }
+      .sketchup_detail_container .steps .arrow:nth-child(6) { grid-area: 3 / 2; }
+      .sketchup_detail_container .steps .step:nth-child(1) { grid-area: 1 / 1 / 3 / 2; }
+      .sketchup_detail_container .steps .step:nth-child(3) { grid-area: 1 / 3 / 3 / 4; }
+      .sketchup_detail_container .steps .step:nth-child(5) { grid-area: 3 / 1 / 5 / 2; }
+      .sketchup_detail_container .steps .step:nth-child(7) { grid-area: 3 / 3 / 5 / 4; }
+    }
+    /* pain points / why / notice: single column */
+    .sketchup_detail_container .hooks { grid-template-columns: 1fr; }
+    /* one column makes the hook cards wider, not narrower: keep the card text at its PC size */
+    .sketchup_detail_container .hook-card { --fs-lead: 22px; --fs-caption: 14px; }
+    .sketchup_detail_container .hooks-long .hook-a { font-size: 18px; }  /* one wide column: the answer needs less shrinking */
+    .sketchup_detail_container .why-grid { grid-template-columns: 1fr; }
+    .sketchup_detail_container .notice-cols { flex-direction: column; }
+    .sketchup_detail_container .btn-row .btn { flex: 1 1 0; width: auto; min-width: 0; padding-left: 12px; padding-right: 12px; }
+    /* Pro Scan: formula cards stacked, Scan Essentials in one column */
+    .sketchup_detail_container .formula-row, .sketchup_detail_container .formula-row:not(.is-3) { display: flex; flex-direction: column; align-self: stretch; }
+    .sketchup_detail_container .formula-card { width: min(100%, 320px); justify-content: flex-start; }  /* stacked cards: icons line up */
+    .sketchup_detail_container .formula-row.is-3 .formula-card { flex: none; padding: 20px 24px; }
+    .sketchup_detail_container .products-grid.products-feature { grid-template-columns: 1fr; }
+    .sketchup_detail_container .product-main.is-col { flex-direction: row; align-items: center; }
+    .sketchup_detail_container .scan-grid { grid-template-columns: 1fr; row-gap: 16px; }
+    .sketchup_detail_container .link-bar { flex-direction: column; align-items: stretch; }
+    .sketchup_detail_container .btn.btn-arrow { width: 100%; }
+        /* improvement cards: all 16:9 (all open, like the lead card), no lead/size animation */
+    .sketchup_detail_container .improve-text { padding-top: var(--card-30); padding-bottom: var(--card-30); }
+    .sketchup_detail_container .improve-card,
+    .sketchup_detail_container .improve-card.is-lead {
+      aspect-ratio: auto; height: auto; transition: none;
+      min-height: calc(100cqw * 9 / 16);  /* 16:9 (100cqw = list width), taller only if the text needs it */
+    }
+    /* products: 2 columns */
+    .sketchup_detail_container .products-grid { grid-template-columns: 1fr 1fr; grid-template-rows: none; }
+    /* comparison table: scroll sideways, feature column stays put */
+    .sketchup_detail_container .compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .sketchup_detail_container .compare-table { min-width: 0; }
+    .sketchup_detail_container .compare-table th:first-child,
+    .sketchup_detail_container .compare-table td:first-child { min-width: 180px; }
+    .sketchup_detail_container .feat { flex-wrap: wrap; gap: 4px 10px; }
+    .sketchup_detail_container .compare-table th:first-child,
+    .sketchup_detail_container .compare-table td:first-child { position: sticky; left: 0; z-index: 1; background: #fff; }
+    /* key/value tables: label above value */
+    .sketchup_detail_container .kv-row { flex-direction: column; }
+    .sketchup_detail_container .kv-row .k { width: auto; padding-bottom: 0; }
+    .sketchup_detail_container .export-line { grid-template-columns: 2.2em 1fr; }
+  }
+
+  /* Fallback for browsers without container queries (pre-2023): same rules on the browser width.
+     KEEP IN SYNC with the @container block above. */
+  @supports not (container-type: inline-size) {
+  @media (max-width: 1200px) {
+    .sketchup_detail_container > * { --layout: mobile; --lh-text: 1.4; --lh-subhead: 1.25; }
+    .sketchup_detail_container .flow br { display: none; }
+    /* hero steps: 2 × 2, no arrows (the arrow positions need container units) */
+    .sketchup_detail_container .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 12px; }
+    .sketchup_detail_container .steps .arrow { display: none; }
+    /* pain points / why / notice: single column */
+    .sketchup_detail_container .hooks { grid-template-columns: 1fr; }
+    /* one column makes the hook cards wider, not narrower: keep the card text at its PC size */
+    .sketchup_detail_container .hook-card { --fs-lead: 22px; --fs-caption: 14px; }
+    .sketchup_detail_container .hooks-long .hook-a { font-size: 18px; }  /* one wide column: the answer needs less shrinking */
+    .sketchup_detail_container .why-grid { grid-template-columns: 1fr; }
+    .sketchup_detail_container .notice-cols { flex-direction: column; }
+    .sketchup_detail_container .btn-row .btn { flex: 1 1 0; width: auto; min-width: 0; padding-left: 12px; padding-right: 12px; }
+    /* Pro Scan: formula cards stacked, Scan Essentials in one column */
+    .sketchup_detail_container .formula-row, .sketchup_detail_container .formula-row:not(.is-3) { display: flex; flex-direction: column; align-self: stretch; }
+    .sketchup_detail_container .formula-card { width: min(100%, 320px); justify-content: flex-start; }  /* stacked cards: icons line up */
+    .sketchup_detail_container .formula-row.is-3 .formula-card { flex: none; padding: 20px 24px; }
+    .sketchup_detail_container .products-grid.products-feature { grid-template-columns: 1fr; }
+    .sketchup_detail_container .product-main.is-col { flex-direction: row; align-items: center; }
+    .sketchup_detail_container .scan-grid { grid-template-columns: 1fr; row-gap: 16px; }
+    .sketchup_detail_container .link-bar { flex-direction: column; align-items: stretch; }
+    .sketchup_detail_container .btn.btn-arrow { width: 100%; }
+        /* improvement cards: all 16:9 (all open, like the lead card), no lead/size animation */
+    .sketchup_detail_container .improve-text { padding-top: var(--card-30); padding-bottom: var(--card-30); }
+    .sketchup_detail_container .improve-card,
+    .sketchup_detail_container .improve-card.is-lead { aspect-ratio: 16 / 9; height: auto; transition: none; }
+    /* products: 2 columns */
+    .sketchup_detail_container .products-grid { grid-template-columns: 1fr 1fr; grid-template-rows: none; }
+    /* comparison table: scroll sideways, feature column stays put */
+    .sketchup_detail_container .compare-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .sketchup_detail_container .compare-table { min-width: 0; }
+    .sketchup_detail_container .compare-table th:first-child,
+    .sketchup_detail_container .compare-table td:first-child { min-width: 180px; }
+    .sketchup_detail_container .feat { flex-wrap: wrap; gap: 4px 10px; }
+    .sketchup_detail_container .compare-table th:first-child,
+    .sketchup_detail_container .compare-table td:first-child { position: sticky; left: 0; z-index: 1; background: #fff; }
+    /* key/value tables: label above value */
+    .sketchup_detail_container .kv-row { flex-direction: column; }
+    .sketchup_detail_container .kv-row .k { width: auto; padding-bottom: 0; }
+    .sketchup_detail_container .export-line { grid-template-columns: 2.2em 1fr; }
+  }
+  }

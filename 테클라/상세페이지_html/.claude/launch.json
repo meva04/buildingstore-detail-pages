@@ -1,0 +1,29 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "tekla-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8765",
+        "--directory",
+        "/Users/ray/Library/CloudStorage/GoogleDrive-swhwang@buildingpoint.co.kr/공유 드라이브/01_GEO_기획본부_BX팀/웹사이트/빌딩스토어/테클라/상세페이지_html"
+      ],
+      "port": 8765
+    },
+    {
+      "name": "sketchup-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8766",
+        "--directory",
+        "/Users/ray/Library/CloudStorage/GoogleDrive-swhwang@buildingpoint.co.kr/공유 드라이브/01_GEO_기획본부_BX팀/웹사이트/빌딩스토어/스케치업/상세페이지_HTML"
+      ],
+      "port": 8766
+    }
+  ]
+}

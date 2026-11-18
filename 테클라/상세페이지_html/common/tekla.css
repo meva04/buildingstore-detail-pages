@@ -1,0 +1,414 @@
+/* Tekla Structures detail pages — shared styles (Carbon / Graphite / Diamond).
+   Every rule is scoped to .tekla_detail_container so it can't leak into the host site.
+   Plan-specific differences live in a small <style> block in each page. */
+  /* Fluid sizing follows the CONTAINER width (not the viewport), so the page scales
+     correctly inside a narrow site column. --tk-w = .tekla_detail_container's inner
+     width, resolved to px on its direct children and inherited as a fixed length
+     (nested containers such as .closing can't change it).
+     Every fluid token: min @360px container → Figma value @920px container.
+     Mobile layout switches on the CONTAINER width too (@container tekla ≤ 764px):
+     on the site (right column 400px + 36px gap) that is a 1200px browser width. */
+  @property --tk-w { syntax: '<length>'; inherits: true; initial-value: 920px; }
+
+  .tekla_detail_container {
+    --primary: #0063a3;
+    --primary-pale: #dcedf9;
+    --dark-blue: #003054;
+    --content: #171c1e;
+    --base-100: #f5f5f8;
+    --base-200: #e9eaf0;
+    --base-page: #fbfbfb;
+    --gray-50: #cbcdd6;
+    --gray-60: #7d808d;
+  }
+  .tekla_detail_container > * {
+    --layout: desktop;          /* read by test_layout.html */
+    --tk-w: min(100vw, 920px);  /* fallback for browsers without container units */
+
+    /* type */
+    --h1: clamp(32px, 32px + 24 * (var(--tk-w) - 360px) / 560, 56px);
+    --h3: clamp(22px, 22px + 8 * (var(--tk-w) - 360px) / 560, 30px);
+    --h4: clamp(19px, 19px + 7 * (var(--tk-w) - 360px) / 560, 26px);
+    --h5: clamp(17px, 17px + 5 * (var(--tk-w) - 360px) / 560, 22px);
+    --h6: clamp(15px, 15px + 5 * (var(--tk-w) - 360px) / 560, 20px);
+    --fs18: clamp(14px, 14px + 4 * (var(--tk-w) - 360px) / 560, 18px);
+    --fs24: clamp(17px, 17px + 7 * (var(--tk-w) - 360px) / 560, 24px);
+    --plan: clamp(22px, 22px + 8.435 * (var(--tk-w) - 360px) / 560, 30.435px);
+    --which-en: clamp(40px, 40px + 10 * (var(--tk-w) - 360px) / 560, 50px);
+    --mark: clamp(22px, 22px + 8 * (var(--tk-w) - 360px) / 560, 30px);
+
+    /* spacing */
+    --pad-y: clamp(72px, 72px + 78 * (var(--tk-w) - 360px) / 560, 150px);
+    --px120: clamp(20px, 20px + 100 * (var(--tk-w) - 360px) / 560, 120px);
+    --px80: clamp(16px, 16px + 64 * (var(--tk-w) - 360px) / 560, 80px);
+    --px64: clamp(20px, 20px + 44 * (var(--tk-w) - 360px) / 560, 64px);
+    --px40: clamp(16px, 16px + 24 * (var(--tk-w) - 360px) / 560, 40px);
+    --px30: clamp(16px, 16px + 14 * (var(--tk-w) - 360px) / 560, 30px);
+    --gap64: clamp(40px, 40px + 24 * (var(--tk-w) - 360px) / 560, 64px);
+    --gap56: clamp(36px, 36px + 20 * (var(--tk-w) - 360px) / 560, 56px);
+    --gap32: clamp(20px, 20px + 12 * (var(--tk-w) - 360px) / 560, 32px);
+    --gap26: clamp(16px, 16px + 10 * (var(--tk-w) - 360px) / 560, 26px);
+    --card-py: clamp(40px, 40px + 40 * (var(--tk-w) - 360px) / 560, 80px);
+    --item-p: clamp(24px, 24px + 16 * (var(--tk-w) - 360px) / 560, 40px);
+    --tab-p: clamp(14px, 14px + 18 * (var(--tk-w) - 360px) / 560, 32px);
+    --col: clamp(56px, 56px + 54 * (var(--tk-w) - 360px) / 560, 110px);
+    --user-h: clamp(150px, 150px + 90 * (var(--tk-w) - 360px) / 560, 240px);
+
+    /* radius */
+    --radius: clamp(8px, 8px + 8 * (var(--tk-w) - 360px) / 560, 16px);
+    --radius-lg: clamp(12px, 12px + 12 * (var(--tk-w) - 360px) / 560, 24px);
+  }
+  .tekla_detail_container, .tekla_detail_container * { box-sizing: border-box; margin: 0; padding: 0; }
+  .tekla_detail_container {
+    -webkit-text-size-adjust: 100%;
+    color: var(--content);
+    font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", sans-serif;
+    word-break: keep-all;
+  }
+  .tekla_detail_container img { display: block; max-width: 100%; }
+  .tekla_detail_container .en { font-family: "Open Sans", sans-serif; font-weight: 700; }
+  .tekla_detail_container .nowrap { white-space: nowrap; }
+
+  .tekla_detail_container {
+    width: 920px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    container: tekla / inline-size;  /* size reference for --tk-w and the mobile switch */
+  }
+  .tekla_detail_container > * + * { margin-top: var(--gap32); }
+  @supports (width: 1cqw) {
+    .tekla_detail_container > * { --tk-w: 100cqw; }
+  }
+  .tekla_detail_container .section { border-radius: var(--radius); overflow: hidden; }
+  .tekla_detail_container .h1 { font-size: var(--h1); font-weight: 700; line-height: normal; color: var(--primary); }
+
+  /* 1. Hero */
+  .tekla_detail_container .hero { position: relative; aspect-ratio: 920 / 614; }
+  .tekla_detail_container .hero { overflow: hidden; border-radius: 0 0 var(--radius) var(--radius); }
+  /* default: fill the box; plan pages override with their Figma crop */
+  .tekla_detail_container .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* 2. Intro */
+  .tekla_detail_container .intro {
+    background: var(--base-100);
+    padding: var(--pad-y) var(--px80);
+    display: flex; flex-direction: column; gap: var(--gap32);
+  }
+  .tekla_detail_container .intro .quote {
+    font-size: var(--h3); font-weight: 600; line-height: 1.3; color: var(--primary);
+    text-indent: -0.45em;
+  }
+  .tekla_detail_container .intro .body { font-size: var(--h5); font-weight: 500; line-height: 1.5; letter-spacing: -0.02em; }
+  .tekla_detail_container .intro .body p + p { margin-top: 0.68em; }
+
+  /* 3. Image band */
+  .tekla_detail_container .img-band { aspect-ratio: 899 / 570; }
+  .tekla_detail_container .img-band img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* 4. Key features */
+  .tekla_detail_container .features {
+    background: var(--primary-pale);
+    padding: var(--pad-y) var(--px64);
+    display: flex; flex-direction: column; gap: var(--gap64);
+  }
+  .tekla_detail_container .features .head { display: flex; flex-direction: column; gap: var(--gap32); font-weight: 700; }
+  .tekla_detail_container .features .eyebrow { font-size: var(--h3); color: var(--content); }
+  /* One item per <li>, each with its own top rule. On PC the column gap is
+     padding on the left item, so the two rules in a row join into one line. */
+  .tekla_detail_container .feature-list { display: grid; grid-template-columns: 1fr 1fr; row-gap: 16px; list-style: none; }
+  .tekla_detail_container .feature-list li {
+    border-top: 2px solid rgba(0,0,0,.1);
+    padding: 16px 0;
+    font-size: var(--h4); font-weight: 600; line-height: 1.3;
+  }
+  .tekla_detail_container .feature-list li:nth-child(odd) { padding-right: var(--gap32); }
+  /* No forced breaks: cap the text width on PC so long items wrap to two lines */
+  .tekla_detail_container .feature-list li span { display: block; max-width: 14em; text-wrap: balance; }
+
+  /* 5. Plan comparison */
+  .tekla_detail_container .compare { background: var(--base-100); display: flex; flex-direction: column; }
+  .tekla_detail_container .compare .cover { position: relative; aspect-ratio: 899 / 670; margin-bottom: -20.4%; }
+  .tekla_detail_container .compare .cover img { position: absolute; inset: 0 0 4px 0; width: 100%; height: calc(100% - 4px); object-fit: cover; }
+  .tekla_detail_container .compare .cover::after {
+    content: ""; position: absolute; inset: 4px 0 0 0;
+    background: linear-gradient(to top, var(--base-100) 13.462%, rgba(251,251,251,0));
+  }
+  .tekla_detail_container .compare .wrap { position: relative; padding: 0 var(--px80) var(--pad-y); }
+  .tekla_detail_container .compare .card {
+    background: var(--base-page);
+    border-radius: var(--radius);
+    padding: var(--card-py) var(--px30);
+    display: flex; flex-direction: column; align-items: center; gap: var(--gap56);
+  }
+  .tekla_detail_container .compare .card .h1 { text-align: center; }
+  .tekla_detail_container .plan-tabs { display: flex; gap: 7px; width: 100%; }
+  .tekla_detail_container .plan-tab {
+    flex: 1 1 0; min-width: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: var(--tab-p) 8px calc(var(--tab-p) * .75);
+    background: var(--base-100);
+    border-radius: var(--radius);
+  }
+  .tekla_detail_container .plan-tab img { width: calc(var(--plan) * 3.059); height: auto; margin-bottom: -3px; }
+  .tekla_detail_container .plan-tab .en { font-size: var(--plan); letter-spacing: -0.05em; color: var(--primary); white-space: nowrap; }
+  .tekla_detail_container .plan-tab.is-active { background: var(--primary); }
+  .tekla_detail_container .plan-tab.is-active .en { color: var(--base-page); }
+  .tekla_detail_container .plan-tab.alt { background: var(--base-200); }
+
+  .tekla_detail_container .spec { width: 679px; max-width: 100%; display: flex; flex-direction: column; gap: 23px; }
+  .tekla_detail_container .spec table { border-collapse: separate; border-spacing: 8px 0; margin: 0 -8px; width: calc(100% + 16px); }
+  .tekla_detail_container .spec th, .tekla_detail_container .spec td { text-align: left; vertical-align: middle; }
+  .tekla_detail_container .spec .col { width: var(--col); text-align: center; }
+  .tekla_detail_container .spec thead th {
+    position: relative;
+    border-top: 1px solid var(--content);
+    padding: 8px 0;
+    font-size: var(--h6); font-weight: 700; color: var(--gray-60); white-space: nowrap;
+  }
+  .tekla_detail_container .spec thead th:not(:last-child)::after { content: ""; position: absolute; top: -1px; right: -8px; width: 8px; border-top: 1px solid var(--content); }
+  .tekla_detail_container .spec thead th:first-child { font-size: var(--fs24); color: var(--primary); }
+  .tekla_detail_container .spec thead th.is-active { color: var(--primary); }
+  .tekla_detail_container .spec .group th {
+    border-top: 2px solid var(--primary);
+    padding: 8px 0 16px;
+    font-size: var(--h6); font-weight: 700; color: var(--primary);
+  }
+  .tekla_detail_container .spec tbody td {
+    border-top: 1px solid rgba(0,0,0,.2);
+    padding: 8px 12px 8px 0;
+    font-size: var(--h6); font-weight: 600; line-height: 1.3;
+  }
+  .tekla_detail_container .spec tbody td.col { padding: 8px 0; }
+  .tekla_detail_container .spec .gap td { border: 0; padding: 0; height: 23px; }
+  .tekla_detail_container .dot { display: inline-block; width: 16px; height: 16px; border-radius: 50%; background: var(--gray-50); vertical-align: middle; }
+  .tekla_detail_container .dot.on { background: var(--primary); }
+  .tekla_detail_container .note-mark { font-size: var(--mark); font-weight: 300; line-height: normal; letter-spacing: -0.05em; color: var(--gray-50); }
+  .tekla_detail_container .note-mark.on { color: var(--primary); }
+  .tekla_detail_container .spec .notes { font-size: var(--fs18); font-weight: 500; line-height: 1.3; color: var(--primary); list-style: none; width: 100%; }
+  /* hanging indent: wrapped lines align with the text, not the number */
+  .tekla_detail_container .spec .notes li { display: flex; gap: 0.3em; margin-bottom: 4px; }
+  .tekla_detail_container .spec .notes .num { flex: none; }
+
+  /* 6. Photo */
+  .tekla_detail_container .photo { aspect-ratio: 899 / 617; }
+  .tekla_detail_container .photo { position: relative; }
+  .tekla_detail_container .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 57.2% 50%; }  /* plan pages may override */
+
+  /* 7. Recommended for */
+  .tekla_detail_container .recommend {
+    background: linear-gradient(180deg, rgba(89,155,199,.2) 0%, rgba(89,155,199,0) 100%), #fbfbfb;
+    padding: var(--pad-y) var(--px40);
+    display: flex; flex-direction: column; gap: var(--gap64);
+  }
+  .tekla_detail_container .recommend .head { display: flex; flex-direction: column; gap: var(--gap26); text-align: center; color: var(--dark-blue); }
+  .tekla_detail_container .recommend .head .h1 { color: var(--dark-blue); }
+  .tekla_detail_container .recommend .head p:last-child { font-size: var(--h4); font-weight: 600; line-height: normal; }
+  .tekla_detail_container .users { display: flex; flex-direction: column; gap: 16px; }
+  .tekla_detail_container .users .row { display: grid; gap: 16px; height: var(--user-h); }
+  /* column ratios from the 840px Figma rows: 275|549, 412|412, 481|343 */
+  .tekla_detail_container .users .row:nth-child(1) { grid-template-columns: 275fr 549fr; }
+  .tekla_detail_container .users .row:nth-child(2) { grid-template-columns: 1fr 1fr; }
+  .tekla_detail_container .users .row:nth-child(3) { grid-template-columns: 481fr 343fr; }
+  /* small boxes: 8px on mobile so the corner doesn't look oversized; Figma 24px on PC */
+  .tekla_detail_container .user { position: relative; min-width: 0; border-radius: clamp(8px, 8px + 16 * (var(--tk-w) - 360px) / 560, 24px); overflow: hidden; }
+  /* keep the image's own ratio at any box size; object-position = Figma crop center */
+  .tekla_detail_container .user img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .tekla_detail_container .user .label {
+    position: relative; height: 100%; padding: clamp(16px, 16px + 8 * (var(--tk-w) - 360px) / 560, 24px);
+    background: linear-gradient(to bottom, rgba(0,0,0,.3) 20%, rgba(0,0,0,0));
+    color: #fff; font-size: var(--h5); font-weight: 700; line-height: normal;
+  }
+  .tekla_detail_container .user .label.strong { background: linear-gradient(to bottom, rgba(0,0,0,.5) 20%, rgba(0,0,0,0)); }
+  .tekla_detail_container .recommend .summary { text-align: center; font-size: var(--h5); line-height: 1.4; font-weight: 400; }
+  .tekla_detail_container .recommend .summary strong { font-weight: 600; }
+
+  /* 8. Collaboration */
+  .tekla_detail_container .collab {
+    background: var(--primary-pale);
+    padding: var(--pad-y) var(--px30);
+    display: flex; flex-direction: column; gap: var(--gap64);
+  }
+  .tekla_detail_container .collab .head { display: flex; flex-direction: column; align-items: center; gap: var(--gap26); padding: 0 10px; text-align: center; }
+  .tekla_detail_container .collab .head .h1 { width: 531px; max-width: 100%; }
+  .tekla_detail_container .collab .head p:last-child { width: 629px; max-width: 100%; font-size: var(--h4); font-weight: 500; line-height: normal; color: #000; }
+  .tekla_detail_container .collab .banner { aspect-ratio: 839 / 439; border-radius: var(--radius-lg); overflow: hidden; }
+  .tekla_detail_container .collab .banner img { width: 100%; height: 100%; object-fit: cover; object-position: 40.6% 50%; }
+  .tekla_detail_container .collab .products { display: flex; flex-direction: column; gap: var(--gap64); padding: 0 10px; }
+  .tekla_detail_container .product-a { display: flex; gap: 10px; align-items: flex-start; }
+  /* .text is exactly as wide as its logo, so % padding on .desc tracks the logo at any size */
+  .tekla_detail_container .product-a .text, .tekla_detail_container .product-b .text { display: flex; flex-direction: column;  min-width: 0; }
+  .tekla_detail_container .product-a .text { flex: 0 1 444px; gap: 16px; }
+  .tekla_detail_container .product-b .text { flex: 0 1 496.795px; gap: 24px; }
+  .tekla_detail_container .product-a .text > img, .tekla_detail_container .product-b .text > img { width: 100%; height: auto; }
+  .tekla_detail_container .product-a .deco { width: 363.924px; height: auto; flex-shrink: 1; min-width: 0; }
+  .tekla_detail_container .product-b .deco { width: 279px; height: auto; flex-shrink: 1; min-width: 0; }
+  .tekla_detail_container .collab .desc { font-size: var(--h6); font-weight: 500; line-height: 1.4; }
+  .tekla_detail_container .product-a .desc { padding-left: 20.5%; }  /* "Tekla" starts at x=84.49 of 444 */
+  .tekla_detail_container .product-b { display: flex; justify-content: flex-end; gap: 16px; height: 277px; padding: 0 10px; }
+  .tekla_detail_container .product-b .desc { padding-left: 15%; }  /* "Trimble" starts at x=63.34 of 496.795 */
+
+  /* 9. License */
+  .tekla_detail_container .license { display: flex; flex-direction: column; }
+  .tekla_detail_container .license .cover { position: relative; aspect-ratio: 730 / 365; border-radius: var(--radius-lg); overflow: hidden; }
+  .tekla_detail_container .license .cover img { width: 100%; height: 100%; object-fit: cover; }
+  .tekla_detail_container .license .cover::after { content: ""; position: absolute; inset: 0; background: rgba(89,155,199,.2); }
+  .tekla_detail_container .license .body {
+    background: linear-gradient(180deg, rgba(89,155,199,0) 0%, rgba(89,155,199,.1) 100%), #fff;
+    border-radius: var(--radius-lg);
+    padding: var(--gap64) var(--px30) var(--pad-y);
+    display: flex; flex-direction: column; align-items: center; gap: var(--item-p);
+  }
+  .tekla_detail_container .license .body > .h1 { padding: 19px 20px; text-align: center; }
+  .tekla_detail_container .license .cards { display: flex; flex-direction: column; gap: 16px; padding: 0 clamp(0px, 0px + 24 * (var(--tk-w) - 360px) / 560, 24px); width: 100%; }
+  .tekla_detail_container .license .item { background: var(--primary-pale); border-radius: var(--radius); padding: var(--item-p); display: flex; flex-direction: column; gap: 16px; }
+  .tekla_detail_container .license .kicker { font-size: var(--h6); font-weight: 700; color: var(--primary); }
+  /* grid, not flex: columns stay 50/50 even though .big has a max-width */
+  .tekla_detail_container .license .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .tekla_detail_container .license .cols > * { min-width: 0; }
+  .tekla_detail_container .license .big { font-size: var(--h3); font-weight: 700; line-height: normal; color: var(--primary); }
+  /* PC: cap the headline width so the long one wraps to 3 lines (safe range 9.5–12em) */
+  .tekla_detail_container .license .big { max-width: 11em; text-wrap: balance; }
+  .tekla_detail_container .license .small { font-size: var(--h6); font-weight: 500; line-height: 1.4; }
+  .tekla_detail_container .license .small.tight { line-height: 1.3; color: #000; }
+
+  /* 10. Which plan */
+  .tekla_detail_container .which {
+    background: #f9f9f9;
+    padding: var(--pad-y) var(--px120);
+    display: flex; flex-direction: column; align-items: center; gap: var(--gap64);
+  }
+  .tekla_detail_container .which .h1 { text-align: center; }
+  .tekla_detail_container .which ul { list-style: none; width: 100%; padding: calc(var(--gap64) / 2) 8px; display: flex; flex-direction: column; gap: clamp(24px, 24px + 16 * (var(--tk-w) - 360px) / 560, 40px); }
+  .tekla_detail_container .which li {
+    border-top: 2px solid var(--gray-50);
+    padding: 15px 0;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;
+  }
+  .tekla_detail_container .which li p { font-size: var(--h4); font-weight: 600; line-height: 1.2; }
+  .tekla_detail_container .which li .en { font-size: var(--which-en); line-height: 1; letter-spacing: -0.05em; white-space: nowrap; }
+  .tekla_detail_container .which .carbon { color: #9cc9e9; }
+  .tekla_detail_container .which .graphite { color: var(--primary); }
+  .tekla_detail_container .which .diamond { color: var(--dark-blue); }
+
+  /* 11. Closing */
+  .tekla_detail_container .closing {
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(89,155,199,.2) 100%);
+    padding: var(--gap64) var(--px30);
+    display: flex; flex-direction: column; align-items: center; gap: clamp(56px, 56px + 58 * (var(--tk-w) - 360px) / 560, 114px);
+    text-align: center;
+  }
+  .tekla_detail_container .closing .top { display: flex; flex-direction: column; align-items: center; gap: clamp(48px, 48px + 53 * (var(--tk-w) - 360px) / 560, 101px); }
+  .tekla_detail_container .closing .top > p { font-size: var(--h4); font-weight: 600; line-height: 1.3; }
+  /* sized from the section's content width (860px at 920): 526 / 14 / 61.3px */
+  .tekla_detail_container .closing .lockup { display: flex; align-items: center; gap: min(14px, (var(--tk-w) - 2 * var(--px30)) * 0.0163); }
+  .tekla_detail_container .closing .lockup img { width: min(526.044px, (var(--tk-w) - 2 * var(--px30)) * 0.6117); height: auto; }
+  .tekla_detail_container .closing .lockup .en { font-size: min(61.306px, (var(--tk-w) - 2 * var(--px30)) * 0.0713); letter-spacing: -0.05em; color: var(--primary); padding-bottom: 4px; line-height: normal; }
+  .tekla_detail_container .closing .sub { font-size: var(--fs18); font-weight: 500; line-height: 1.3; color: var(--gray-60); }
+
+  /* ---------- Tablet & mobile layout adjustments ---------- */
+  @container tekla (max-width: 764px) {
+    .tekla_detail_container > * { --layout: mobile; }
+    /* Figma's forced line breaks read awkwardly on narrow screens */
+    .tekla_detail_container .flow br { display: none; }
+
+    .tekla_detail_container .product-a, .tekla_detail_container .product-b { flex-direction: column; align-items: flex-start; height: auto; padding: 0; }
+    .tekla_detail_container .product-a .deco, .tekla_detail_container .product-b .deco { display: none; }
+    /* Logos at 70% of the previous mobile size, both at the same scale.
+       Everything aligns on one vertical line: where the wordmark letters start. */
+    .tekla_detail_container .products {
+      --wa: min(311px, var(--tk-w) * 0.51);                    /* Model Sharing logo width */
+      --wb: calc(var(--wa) * 496.795 / 444);     /* Trimble logo, same scale */
+      --text-x: calc(var(--wa) * 0.1903);        /* "Tekla" letter start */
+    }
+    .tekla_detail_container .product-a .text, .tekla_detail_container .product-b .text { flex: none; width: 100%; }
+    .tekla_detail_container .product-a .text > img { width: var(--wa); }
+    .tekla_detail_container .product-b .text > img {
+      width: var(--wb);
+      /* shift so "Trimble" (12.75% in) lands on the same line as "Tekla" */
+      margin-left: calc(var(--text-x) - var(--wb) * 0.1275);
+    }
+    .tekla_detail_container .product-a .desc, .tekla_detail_container .product-b .desc { padding-left: var(--text-x); }
+  }
+
+  @container tekla (max-width: 764px) {
+    .tekla_detail_container .feature-list { grid-template-columns: 1fr; row-gap: 0; }
+    .tekla_detail_container .feature-list li:nth-child(odd) { padding-right: 0; }
+    .tekla_detail_container .feature-list li span { max-width: none; text-wrap: wrap; }
+    .tekla_detail_container .users .row { grid-template-columns: 1fr 1fr !important; }
+    .tekla_detail_container .license .cols { grid-template-columns: 1fr; }
+    .tekla_detail_container .license .big { max-width: none; text-wrap: wrap; }
+    .tekla_detail_container .which li { flex-direction: column; gap: 8px; }
+    /* closing headline: narrow measure → 2–3 balanced lines with generous side margins */
+    .tekla_detail_container .closing .top > p { max-width: 12em; text-wrap: balance; }
+    .tekla_detail_container .closing .sub { max-width: 21em; text-wrap: balance; }
+    .tekla_detail_container .which .h1 { align-self: stretch; text-align: left; padding: 0 8px; }  /* match the list's 8px inset */
+    .tekla_detail_container .spec .gap td { height: 16px; }
+    .tekla_detail_container .spec tbody td { padding-right: 4px; }
+    .tekla_detail_container .spec table { border-spacing: 4px 0; margin: 0 -4px; width: calc(100% + 8px); }
+    .tekla_detail_container .spec thead th:not(:last-child)::after { right: -4px; width: 4px; }
+    .tekla_detail_container .dot { width: 12px; height: 12px; }
+    .tekla_detail_container .plan-tabs { gap: 4px; }
+    .tekla_detail_container .compare .wrap { padding-left: 12px; padding-right: 12px; }
+    .tekla_detail_container .compare .card { padding-left: 12px; padding-right: 12px; }
+    .tekla_detail_container .spec .col { width: 48px; }
+    .tekla_detail_container .spec thead th { font-size: 12px; letter-spacing: -0.02em; }
+    .tekla_detail_container .spec thead th:first-child { font-size: 17px; }
+    .tekla_detail_container .spec tbody td { font-size: 14px; }
+    .tekla_detail_container .spec tbody td br { display: none; }
+  }
+
+  /* Fallback for browsers without container queries (pre-2023): same mobile rules on the
+     browser width. 1200px browser ≈ 764px detail column on the site (400px right column + 36px gap).
+     KEEP IN SYNC with the two @container blocks above. */
+  @supports not (container-type: inline-size) {
+  @media (max-width: 1200px) {
+    .tekla_detail_container > * { --layout: mobile; }
+    /* Figma's forced line breaks read awkwardly on narrow screens */
+    .tekla_detail_container .flow br { display: none; }
+
+    .tekla_detail_container .product-a, .tekla_detail_container .product-b { flex-direction: column; align-items: flex-start; height: auto; padding: 0; }
+    .tekla_detail_container .product-a .deco, .tekla_detail_container .product-b .deco { display: none; }
+    /* Logos at 70% of the previous mobile size, both at the same scale.
+       Everything aligns on one vertical line: where the wordmark letters start. */
+    .tekla_detail_container .products {
+      --wa: min(311px, var(--tk-w) * 0.51);                    /* Model Sharing logo width */
+      --wb: calc(var(--wa) * 496.795 / 444);     /* Trimble logo, same scale */
+      --text-x: calc(var(--wa) * 0.1903);        /* "Tekla" letter start */
+    }
+    .tekla_detail_container .product-a .text, .tekla_detail_container .product-b .text { flex: none; width: 100%; }
+    .tekla_detail_container .product-a .text > img { width: var(--wa); }
+    .tekla_detail_container .product-b .text > img {
+      width: var(--wb);
+      /* shift so "Trimble" (12.75% in) lands on the same line as "Tekla" */
+      margin-left: calc(var(--text-x) - var(--wb) * 0.1275);
+    }
+    .tekla_detail_container .product-a .desc, .tekla_detail_container .product-b .desc { padding-left: var(--text-x); }
+    .tekla_detail_container .feature-list { grid-template-columns: 1fr; row-gap: 0; }
+    .tekla_detail_container .feature-list li:nth-child(odd) { padding-right: 0; }
+    .tekla_detail_container .feature-list li span { max-width: none; text-wrap: wrap; }
+    .tekla_detail_container .users .row { grid-template-columns: 1fr 1fr !important; }
+    .tekla_detail_container .license .cols { grid-template-columns: 1fr; }
+    .tekla_detail_container .license .big { max-width: none; text-wrap: wrap; }
+    .tekla_detail_container .which li { flex-direction: column; gap: 8px; }
+    /* closing headline: narrow measure → 2–3 balanced lines with generous side margins */
+    .tekla_detail_container .closing .top > p { max-width: 12em; text-wrap: balance; }
+    .tekla_detail_container .closing .sub { max-width: 21em; text-wrap: balance; }
+    .tekla_detail_container .which .h1 { align-self: stretch; text-align: left; padding: 0 8px; }  /* match the list's 8px inset */
+    .tekla_detail_container .spec .gap td { height: 16px; }
+    .tekla_detail_container .spec tbody td { padding-right: 4px; }
+    .tekla_detail_container .spec table { border-spacing: 4px 0; margin: 0 -4px; width: calc(100% + 8px); }
+    .tekla_detail_container .spec thead th:not(:last-child)::after { right: -4px; width: 4px; }
+    .tekla_detail_container .dot { width: 12px; height: 12px; }
+    .tekla_detail_container .plan-tabs { gap: 4px; }
+    .tekla_detail_container .compare .wrap { padding-left: 12px; padding-right: 12px; }
+    .tekla_detail_container .compare .card { padding-left: 12px; padding-right: 12px; }
+    .tekla_detail_container .spec .col { width: 48px; }
+    .tekla_detail_container .spec thead th { font-size: 12px; letter-spacing: -0.02em; }
+    .tekla_detail_container .spec thead th:first-child { font-size: 17px; }
+    .tekla_detail_container .spec tbody td { font-size: 14px; }
+    .tekla_detail_container .spec tbody td br { display: none; }
+  }
+  }

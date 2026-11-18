@@ -1,0 +1,624 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SketchUp Pro Civil Contractor | 토공 설계 · 현장 측량 연동 | 빌딩스토어</title>
+<meta name="description" content="SketchUp Pro Civil Contractor는 SketchUp Pro에 Trimble Site Contractor와 Trimble Field Points를 더한 토목·토공용 플랜입니다. 스케치업 3D 모델을 굴착 장비 제어 파일(.dxf, .ttm)로 내보내고, 현장 측점(CSV/TFLX)을 스케치업 좌표와 오차 없이 연동합니다.">
+<meta property="og:type" content="product">
+<meta property="og:title" content="SketchUp Pro Civil Contractor | 빌딩스토어">
+<meta property="og:description" content="현장 측량 데이터 연동까지 한 번에. Trimble Site Contractor, Trimble Field Points, 플랜별 비교, 시스템 요구 사항을 확인하세요.">
+<meta property="og:image" content="assets/site-main.jpg">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<link rel="stylesheet" href="../common/sketchup.css">
+<style>
+  /* standalone preview only: the host site controls its own <body> */
+  body { margin: 0; }
+</style>
+</head>
+<body>
+<div class="sketchup_detail_container">
+
+  <!-- 1. Hero -->
+  <section class="section hero">
+    <div class="sec-inner">
+      <div class="hero-head">
+        <h1><span class="light">현장 </span>측량 데이터 연동까지<span class="light"> 한 번에</span></h1>
+        <p class="hero-sub lead flow"><u class="hl">3D 모델을 현장 장비 제어 파일로 변환</u>하고, <br><b>현장 측점(CSV/TFLX)을 연동해</b> 오차 없는 토공 설계를 완성하세요.</p>
+      </div>
+      <div class="formula">
+        <div class="formula-row is-3">
+          <div class="formula-card is-base"><div class="ico"><img src="../pro scan/assets/ico-pro.svg" width="55" height="60" alt=""></div><div><h5 class="t">SketchUp Pro</h5><p class="s">3D모델링 · 2D문서화 · <br>클라우드 스토리지</p></div></div>
+          <img class="formula-op" src="../pro scan/assets/plus.svg" width="24" height="24" alt="+">
+          <div class="formula-card"><div class="ico"><img src="assets/ico-site.svg" width="44" height="50" alt=""></div><div><h5 class="t">Trimble Site <br>Contractor</h5><p class="s">토공 · 굴착 설계 연동</p></div></div>
+          <img class="formula-op" src="../pro scan/assets/plus.svg" width="24" height="24" alt="+">
+          <div class="formula-card"><div class="ico"><img src="assets/ico-field.svg" width="48" height="48" alt=""></div><div><h5 class="t">Trimble Field <br>Points</h5><p class="s">현장 측량 좌표 제어</p></div></div>
+        </div>
+        <img class="formula-op" src="../pro scan/assets/arrow-down.svg" width="22" height="24" alt="">
+        <p class="formula-result is-long"><img src="../pro scan/assets/sketchup-logo-white.svg" width="267" height="54" alt="SketchUp"><span>Pro Civil Contractor</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Pain points -->
+  <section class="section pains">
+    <div class="sec-inner">
+      <h1><span class="light">이런 고민이 있다면,</span> 지금 구매하세요!</h1>
+      <div class="hooks hooks-fit hooks-long">
+        <div class="hook">
+          <div class="hook-card">
+            <div class="hook-q"><p class="q lead">굴착기 제어 파일 제작이<br>번거로워요</p><p class="who caption">토목 설계자 · 현장 시공팀</p></div>
+            <div class="hook-img"><img src="assets/hook-1.jpg" alt="" width="900" height="502"></div>
+          </div>
+          <h4 class="hook-a"><b>Siteworks 호환 파일<br>(.dxf/.ttm) 내보내기</b></h4>
+        </div>
+        <div class="hook">
+          <div class="hook-card">
+            <div class="hook-q"><p class="q lead">현장 좌표를 3D 도면에<br>일일이 맞춰야 해요</p><p class="who caption">현장 측량기사 · 토탈스테이션 담당자</p></div>
+            <div class="hook-img"><img src="assets/hook-2.jpg" alt="" width="900" height="502"></div>
+          </div>
+          <h4 class="hook-a"><b>현장 측점 위에서<br>바로 3D 모델링 시작</b></h4>
+        </div>
+        <div class="hook">
+          <div class="hook-card">
+            <div class="hook-q"><p class="q lead">측량 좌표를 원점 기준으로<br>가져오기 어려워요</p><p class="who caption">스캐너를 쓰는 측량 · 엔지니어링 팀</p></div>
+            <div class="hook-img"><img src="assets/hook-3.jpg" alt="" width="900" height="502"></div>
+          </div>
+          <h4 class="hook-a"><b>RTS 측점을 스케치업<br>원점 기준으로 가져오기</b></h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Trimble Site Contractor -->
+  <section class="section scan-ess has-cover">
+    <div class="scan-cover"><img src="assets/site-main.jpg" alt="현장 컨트롤러와 노트북에서 스케치업 모델을 활용하는 모습"></div>
+    <div class="sec-inner">
+      <div class="scan-head">
+        <p class="kicker">3D-to-Field 굴착 및 토공 솔루션</p>
+        <h1>Trimble Site Contractor</h1>
+        <div class="scan-intro"><h3 class="flow">스케치업 3D 모델, 측량 장비·굴착기와 연동</h3><p class="flow">굴착 지오메트리를 손쉽게 모델링하고, <br>현장 컨트롤러 및 장비 제어 파일(.dxf, .ttm)로 내보냅니다.</p></div>
+      </div>
+      <div class="scan-feats">
+        <div class="scan-grid">
+          <div class="scan-feat"><div class="ph"><img src="assets/site-1.jpg" alt=""></div><div class="txt"><h4>지형 모델 내보내기</h4><p>스케치업 지형을 Siteworks 태블릿이 읽을 수 있는 파일로 변환합니다.</p></div></div>
+          <div class="scan-feat"><div class="ph"><img src="assets/site-2.jpg" alt=""></div><div class="txt"><h4>굴착 장비 연동</h4><p>굴착 장비 모니터로 설계 도면과 정밀 굴착 높이를 실시간 제공합니다.</p></div></div>
+          <div class="scan-feat"><div class="ph"><img src="assets/site-3.jpg" alt=""></div><div class="txt"><h4>컨트롤 포인트 좌표 맞춤</h4><p>오프셋 입력과 마커 지정으로 스케치업 원점과 실제 현장 좌표를 매칭합니다.</p></div></div>
+          <div class="scan-feat"><div class="ph"><img src="assets/site-4.jpg" alt=""></div><div class="txt"><h4>현장 측량 지형 가져오기</h4><p>현장에서 측량한 데이터를 가져와 지형에 맞춰 설계를 즉시 검토·수정합니다.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Trimble Field Points -->
+  <section class="section scan-ess is-pale is-fold has-cover">
+    <button type="button" class="fold-close" aria-label="펼치기"><svg class="i-open" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg><svg class="i-close" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="scan-cover"><img src="assets/field-main.jpg" alt="스케치업 모델의 설계 포인트를 현장 좌표와 맞추는 화면"></div>
+    <div class="sec-inner">
+      <div class="scan-head">
+        <p class="kicker">현장 좌표-3D 도면 정밀 연결 도구</p>
+        <h1>Trimble Field Points</h1>
+        <div class="scan-intro"><h3 class="flow">현장 측점 데이터(RTS)와 스케치업 포인트를 <br>오차 없이 상호 호환</h3></div>
+      </div>
+      <div class="fold-body" id="fold-civ-1"><div class="fold-inner">
+          <div class="scan-intro"><p class="flow">큰 측량 좌표를 스케치업 모델 원점 근처로 옮기고, <br>모델의 레이아웃 포인트를 현장 배치 파일로 내보냅니다.</p></div>
+          <div class="scan-feats">
+            <div class="scan-grid">
+              <div class="scan-feat"><div class="ph"><img src="assets/field-1.jpg" alt=""></div><div class="txt"><h4>원점 오프셋 설정</h4><p>현장 좌표를 모델 원점 근처로 옮겨 작업하고, 원래 좌표로 되돌린 후 내보냅니다.</p></div></div>
+              <div class="scan-feat"><div class="ph"><img src="assets/field-2.jpg" alt=""></div><div class="txt"><h4>설계 포인트 생성 및 변환</h4><p>클릭, 좌표 직접 입력, 줄자 안내점 변환으로 설계 포인트를 만들어 모델에 배치합니다.</p></div></div>
+              <div class="scan-feat"><div class="ph"><img src="assets/field-3.jpg" alt=""></div><div class="txt"><h4>TFLX / CSV 내보내기</h4><p>작성한 포인트를 Field Link용 .tflx 파일 및 범용 CSV로 내보내 현장 배치에 활용합니다.</p></div></div>
+              <div class="scan-feat"><div class="ph"><img src="assets/field-4.jpg" alt=""></div><div class="txt"><h4>레이어별 색상 표시</h4><p>포인트를 스케치업 태그별 색상으로 구분해 표시하고, 모델에서 종류별로 확인합니다.</p></div></div>
+            </div>
+          </div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- 5. Related links: SketchUp Pro (included) / 2027 new features -->
+  <section class="link-bars">
+    <div class="sec-inner">
+      <div class="link-bar">
+        <div class="link-info"><span class="ico"><img src="../pro scan/assets/ico-pro.svg" width="55" height="60" alt=""></span><div><h5 class="t">이 제품에는 SketchUp Pro가 포함되어 있습니다.</h5><p class="s">3D모델링 · 2D문서화 · 클라우드 스토리지</p></div></div>
+        <a class="btn btn-sky btn-arrow" href="https://store.buildingpoint.co.kr/product?pid=18051600091" target="_blank" rel="noopener">SketchUp Pro 자세히 보기<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M4 12h16M13.14 19 20 12l-6.86-7"/></svg></a>
+      </div>
+      <div class="link-bar is-new">
+        <div class="link-info"><span class="ico ico-new">NEW</span><div><h5 class="t">SketchUp 2027 신규 기능 보기</h5><p class="s">Procedure Tool · Auto Fit 컴포넌트 · 단면 해치</p></div></div>
+        <a class="btn btn-arrow" href="https://blog.naver.com/trimblebuildings/224449778118" target="_blank" rel="noopener">2027 신규 기능 자세히 보기<svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M4 12h16M13.14 19 20 12l-6.86-7"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Included products -->
+  <section class="products">
+    <div class="sec-inner">
+      <h2>스케치업 프로 시빌 컨트랙터 포함 제품</h2>
+      <div class="products-lists">
+        <ul class="products-grid products-feature" style="--cols: 2;">
+          <li class="product product-main"><span class="ico"><img src="assets/ico-site.svg" alt=""></span><div><h4 class="n">Trimble Site Contractor</h4><p class="d">굴착 설계 및 현장 제어 파일 변환</p></div></li>
+          <li class="product product-main"><span class="ico"><img src="assets/ico-field.svg" alt=""></span><div><h4 class="n">Trimble Field Points</h4><p class="d">RTS 측점 연동·포인트 제어</p></div></li>
+        </ul>
+        <ul class="products-grid">
+          <li class="product"><img src="../pro/assets/eco-desktop.svg" alt=""><div><h6 class="n">Desktop용 스케치업</h6><p class="d">확장 가능한 3D 모델러</p></div></li>
+          <li class="product"><img src="../pro/assets/eco-web.svg" alt=""><div><h6 class="n">Web용 스케치업</h6><p class="d">설치 없이 웹에서 모델링</p></div></li>
+          <li class="product"><img src="../pro/assets/eco-ipad.svg" alt=""><div><h6 class="n">iPad용 스케치업</h6><p class="d">3D 모델링 전용 도구</p></div></li>
+          <li class="product"><img src="../pro/assets/eco-layout.svg" alt=""><div><h6 class="n">LayOut</h6><p class="d">도면 · 프레젠테이션 문서</p></div></li>
+          <li class="product"><img src="../pro/assets/eco-viewer.svg" alt=""><div><h6 class="n">SketchUp Viewer</h6><p class="d">ios 전용 모바일 뷰어</p></div></li>
+          <li class="product"><img src="../pro/assets/eco-3dwarehouse.svg" alt=""><div><h6 class="n">3D Warehouse</h6><p class="d">무료 3D 모델 라이브러리</p></div></li>
+          <li class="product"><img src="../pro/assets/eco-extension.svg" alt=""><div><h6 class="n">Extension Warehouse</h6><p class="d">분야별 기능 확장</p></div></li>
+          <li class="product"><img src="../pro/assets/eco-connect.svg" alt=""><div><h6 class="n">Trimble Connect</h6><p class="d">클라우드 저장 · 협업</p></div></li>
+          <li class="product"><img src="../pro/assets/eco-predesign.svg" alt=""><div><h6 class="n">PreDesign</h6><p class="d">설계 전 대지 · 기후 분석</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Plan comparison -->
+  <section class="plans">
+    <div class="sec-inner">
+      <h2>플랜별 제품 비교</h2>
+      <div class="compare-scroll">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>기능</th>
+              <th class="col">Free<small>무료 · 웹 전용</small></th>
+              <th class="col">Pro<small>기본 구성</small></th>
+              <th class="col">Pro Scan<small>스캐닝 전문가용</small></th>
+              <th class="col is-pro">Pro Civil Contractor<small>건설 / 토목 전문가용</small></th>
+              <th class="col">Pro Advanced<small>AEC 전문가용</small></th>
+              <th class="col">Studio<small>올인원 패키지</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><div class="feat"><p class="txt"><b>웹용 스케치업</b><span>SketchUp for Web</span></p></div></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col is-pro"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td></tr>
+            <tr><td><div class="feat"><p class="txt"><b>데스크톱용 스케치업</b><span>SketchUp for Desktop</span></p></div></td><td class="col"><i class="dash"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col is-pro"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td></tr>
+            <tr><td><div class="feat"><p class="txt"><b>아이패드용 스케치업</b><span>SketchUp for iPad</span></p></div></td><td class="col"><i class="dash"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col is-pro"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td></tr>
+            <tr><td><div class="feat"><p class="txt"><b>3D 모델 저장 창고</b><span>3D Warehouse</span></p></div></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col is-pro"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td></tr>
+            <tr><td><div class="feat"><p class="txt"><b>스케치업 기능 확장</b><span>Extension Warehouse</span></p></div></td><td class="col"><i class="dash"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col is-pro"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td></tr>
+            <tr><td><div class="feat"><p class="txt"><b>클라우드 스토리지</b><span>Trimble Connect</span></p></div></td><td class="col">10GB</td><td class="col">무제한</td><td class="col">무제한</td><td class="col is-pro">무제한</td><td class="col">무제한</td><td class="col">무제한</td></tr>
+            <tr><td><div class="feat"><p class="txt"><b>현장 좌표 관리</b><span>Field Points for SketchUp</span></p><span class="badge">Win Only</span></div></td><td class="col"><i class="dash"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col is-pro"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td></tr>
+            <tr><td><div class="feat"><p class="txt"><b>굴착 설계 연동</b><span>Site Contractor</span></p><span class="badge">Win Only</span></div></td><td class="col"><i class="dash"></i></td><td class="col"><i class="dash"></i></td><td class="col"><i class="dash"></i></td><td class="col is-pro"><i class="dot"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td></tr>
+            <tr><td><div class="feat"><p class="txt"><b>포인트 클라우드 모델링</b><span>Scan Essentials</span></p><span class="badge">Win Only</span></div></td><td class="col"><i class="dash"></i></td><td class="col"><i class="dash"></i></td><td class="col"><i class="dot"></i></td><td class="col is-pro"><i class="dash"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td></tr>
+            <tr><td><div class="feat"><p class="txt"><b>Revit 파일 지원(*.rvt)</b><span>Revit Importer</span></p><span class="badge">Win Only</span></div></td><td class="col"><i class="dash"></i></td><td class="col"><i class="dash"></i></td><td class="col"><i class="dash"></i></td><td class="col is-pro"><i class="dash"></i></td><td class="col"><i class="dot"></i></td><td class="col"><i class="dot"></i></td></tr>
+            <tr><td><div class="feat"><p class="txt"><b>고품질 렌더링</b><span>V-Ray</span></p><span class="badge">Win Only</span></div></td><td class="col"><i class="dash"></i></td><td class="col"><i class="dash"></i></td><td class="col"><i class="dash"></i></td><td class="col is-pro"><i class="dash"></i></td><td class="col"><i class="dash"></i></td><td class="col"><i class="dot"></i></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Field Points , Site Contractor , Scan Essentials , Revit Importer , V-Ray 기능은 Windows OS 환경에서만 사용할 수 있습니다.</p>
+    </div>
+  </section>
+
+  <!-- 8. Supported file formats -->
+  <section class="kv formats">
+    <div class="sec-inner">
+      <h2>지원 파일 포맷</h2>
+      <div>
+        <div class="kv-row"><p class="k">가져오기 (Import)</p><p class="v regular">*.3ds, *.dwg, *.dxf, *.dae, *.dem, *.ddf, *.kmz, *.ifc, *.ifcZIP, *.jpg, *.jpeg, *.pdf, *.psd, *.png, *.stl, *.skp, *.skm, *.ske, *.skh, *.style, *.tif, *.tiff, *.tga, *.trb, *.usd, *.usda, *.usdc, *.usdz, *.bmp, *.glb</p></div>
+        <div class="kv-row"><p class="k">내보내기 (Export)</p>
+          <div class="v">
+            <p class="export-line"><b>2D</b><span>*.pdf, *.eps, *.bmp, *.jpg, *.tif, *.png, *.dwg, *.dxf</span></p>
+            <p class="export-line"><b>3D</b><span>*.3ds, *.dwg, *.dxf, *.dae, *.fbx, *.kmz, *.ifc, *.trb, *.obj, *.stl, *.usd, *.usda, *.usdc, *.usdz, *.wrl, *.xsi, *.glb</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. System requirements -->
+  <section class="kv sysreq">
+    <div class="sec-inner">
+      <h2>시스템 요구 사항</h2>
+      <div>
+        <div class="kv-row"><p class="k">운영체제</p><p class="v">Windows 11 · macOS 15(Sequoia) 이상</p></div>
+        <div class="kv-row"><p class="k">CPU</p><p class="v">2GHz 이상 (Win OS) · 2.1GHz 이상 (Mac OS)</p></div>
+        <div class="kv-row"><p class="k">RAM</p><p class="v">8GB 이상 (Win · Mac 동일)</p></div>
+        <div class="kv-row"><p class="k">디스크 공간</p><p class="v">6GB 이상 (Win · Mac 동일)</p></div>
+        <div class="kv-row"><p class="k">그래픽</p><p class="v">VRAM 8GB 이상 최신 GPU (OpenGL 3.1 이상)<br>(PBR 등 고성능 작업 시 32GB 이상 권장)</p></div>
+        <div class="kv-row"><p class="k">필수 소프트웨어</p><p class="v">Win OS: .NET Framework 4.6.2 이상<br>Mac OS: QuickTime 5.0 이상</p></div>
+        <div class="kv-row"><p class="k">지원 언어</p><p class="v">한국어 지원 (다국어 포함)</p></div>
+      </div>
+      <p class="note flow">32비트 Windows에는 설치할 수 없습니다. <br>Boot Camp, VMWare, Parallels 등 가상화 환경을 지원하지 않습니다.</p>
+    </div>
+  </section>
+
+  <!-- 10. Notice -->
+  <section class="section notice">
+    <div class="sec-inner">
+      <div class="notice-cols">
+        <div class="notice-col">
+          <h5 class="t">공통 안내사항</h5>
+          <i class="rule" aria-hidden="true"></i>
+          <ol>
+            <li>라이선스 발급 순서<span>결제 완료 후 트림블 본사의 승인을 거쳐 라이선스가 발급됩니다.</span>
+<span>승인이 완료되면 결제 시 입력하신 이메일로 안내 메일이 발송됩니다.</span>
+<span>메일 수신 후 빌딩포인트코리아에서 발송한 활성화 가이드에 따라, 라이선스 활성화 및 계정 할당을 진행해 주세요.</span></li>
+            <li>라이선스 유지보수<span>모든 스케치업 라이선스는 발급일로부터 1년 간의 기술지원 서비스 비용이 포함되어 있습니다.</span>
+<span>빌딩포인트코리아 기술지원팀 <a href="mailto:support@buildingpoint.co.kr">support@buildingpoint.co.kr</a></span></li>
+          </ol>
+        </div>
+        <div class="notice-col">
+          <h5 class="t">주문 및 라이선스 정책</h5>
+          <i class="rule" aria-hidden="true"></i>
+          <ol>
+            <li>환불 조건<span>라이선스 발급일 기준 7일 이내 라이선스를 활성화하지 않은 경우 환불이 가능합니다.</span></li>
+            <li>반품 / 환불 예외 사항<span>소프트웨어 상의 문제를 제외한 기타 다른 이유로 인한 반품/환불 불가</span></li>
+            <li>결제 관련<span>카드결제 취소의 경우 카드사 또는 PG사 사정에 따라 취소 완료까지 최대 15일까지 소요될 수 있습니다.</span>
+<span>가상계좌 입금 후 취소의 경우 당사와 PG사 환불 규정에 의해 15일 이내 환불됩니다.</span>
+<span>취소 시 발생하는 모든 수수료(카드취소, 입금 후 취소)는 고객 부답입니다.</span></li>
+          </ol>
+        </div>
+      </div>
+      <div class="issue-box">
+        <h5 class="t">라이선스 발급 안내</h5>
+        <p>본 상품은 라이선스가 발급되는 상품으로, <em>라이선스 발급에 영업일 기준 평균 1~2일</em> 소요됩니다.</p>
+      </div>
+      <a class="btn" href="https://store.buildingpoint.co.kr/license" target="_blank" rel="noopener">자세히 보기</a>
+    </div>
+  </section>
+
+  <!-- 11. Closing -->
+  <section class="section closing">
+    <div class="sec-inner">
+      <img src="../pro/assets/trimble-sketchup-logo.svg" width="354" height="103.24" alt="Trimble SketchUp">
+    </div>
+  </section>
+
+<script>
+/* Card rows in the news section and the why section: carousel behaviour, scoped to this detail block. */
+(function () {
+  var root = document.currentScript && document.currentScript.closest('.sketchup_detail_container');
+  if (!root) return;
+
+  /* Swipe rows (why cards / improvement cards — only in the wide layout, where the row scrolls
+     sideways): drag with the mouse to swipe. Touch and trackpads scroll natively. */
+  [].forEach.call(root.querySelectorAll('.why-grid, .improve-list'), function (row) {
+    var drag = null;
+    row.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse' || e.button !== 0 || row.scrollWidth <= row.clientWidth) return;
+      drag = { x: e.clientX, left: row.scrollLeft };
+    });
+    window.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var dx = e.clientX - drag.x;
+      if (!row.classList.contains('is-dragging') && Math.abs(dx) < 4) return;
+      row.classList.add('is-dragging');
+      row.scrollLeft = drag.left - dx;
+    });
+    window.addEventListener('pointerup', function () {
+      if (!drag) return;
+      drag = null;
+      if (!row.classList.contains('is-dragging')) return;
+      // let scroll-snap settle on the nearest card from where the drag ended
+      var left = row.scrollLeft;
+      row.classList.remove('is-dragging');
+      row.scrollLeft = left;
+    });
+  });
+
+  /* Carousel buttons next to the titles (wide layout only): scroll the row by one card and
+     disable a button at that end of the row */
+  [].forEach.call(root.querySelectorAll('.carousel-nav'), function (nav) {
+    var row = nav.closest('.sec-inner').querySelector('.why-grid, .improve-list');
+    var btns = nav.querySelectorAll('.carousel-btn');
+    if (!row) return;
+    function update() {
+      var max = row.scrollWidth - row.clientWidth;
+      btns[0].disabled = row.scrollLeft <= 1;
+      btns[1].disabled = row.scrollLeft >= max - 1;
+    }
+    [].forEach.call(btns, function (b) {
+      b.addEventListener('click', function () {
+        var card = row.firstElementChild;
+        var step = card.getBoundingClientRect().width + parseFloat(getComputedStyle(row).columnGap || 0);
+        row.scrollBy({ left: Number(b.dataset.dir) * step, behavior: 'smooth' });
+      });
+    });
+    row.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
+
+  /* New-feature / improvement cards: hover (PC) or tap makes a card the lead (big) one of its own
+     list and the previous lead shrinks back; the height change is animated in CSS. */
+  [].forEach.call(root.querySelectorAll('.improve-list'), function (list) {
+    var cards = [].slice.call(list.querySelectorAll('.improve-card'));
+    function lead(card) {
+      cards.forEach(function (c) { c.classList.toggle('is-lead', c === card); });
+    }
+    cards.forEach(function (c) {
+      c.addEventListener('mouseenter', function () { lead(c); });
+      c.addEventListener('click', function () { lead(c); });
+    });
+  });
+
+  /* Card videos (Vimeo): stay hidden over the card image until the player actually plays, so a
+     blocked/unavailable video (e.g. embed privacy) never shows Vimeo's error screen. */
+  [].forEach.call(root.querySelectorAll('.card-video iframe'), function (frame) {
+    var box = frame.parentNode;
+    function ask() {  // Vimeo player postMessage API: subscribe to playback events
+      ['play', 'playProgress'].forEach(function (ev) {
+        frame.contentWindow.postMessage(JSON.stringify({ method: 'addEventListener', value: ev }), 'https://player.vimeo.com');
+      });
+    }
+    frame.addEventListener('load', ask);
+    window.addEventListener('message', function (e) {
+      if (e.source !== frame.contentWindow || e.origin !== 'https://player.vimeo.com') return;
+      var data; try { data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch (err) { return; }
+      if (!data) return;
+      if (data.event === 'ready') ask();
+      if (data.event === 'play' || data.event === 'playProgress') box.classList.add('is-playing');
+    });
+  });
+  /* Fold sections (.is-fold, light sections): closed = kicker + title (+ intro line) only. Clicking a closed section (or its ▾
+     button) opens it and it stays open; the same top-right button, now ×, closes it again. Height change is animated in CSS. */
+  [].forEach.call(root.querySelectorAll('.is-fold'), function (sec) {
+    var head = sec.querySelector('.scan-head'), close = sec.querySelector('.fold-close');
+    function set(open) {
+      sec.classList.toggle('is-open', open);
+      if (head) head.setAttribute('aria-expanded', String(open));
+      if (close) { close.setAttribute('aria-label', open ? '닫기' : '펼치기'); close.setAttribute('aria-expanded', String(open)); }
+    }
+    if (head) { head.setAttribute('role', 'button'); head.setAttribute('tabindex', '0'); head.setAttribute('aria-expanded', 'false'); }
+    sec.addEventListener('click', function () { if (!sec.classList.contains('is-open')) set(true); });
+    if (head) head.addEventListener('keydown', function (e) {
+      if ((e.key === 'Enter' || e.key === ' ') && !sec.classList.contains('is-open')) { e.preventDefault(); set(true); }
+    });
+    // top-right button: ▾ opens a closed section, × closes an open one
+    if (close) close.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (!sec.classList.contains('is-open')) { set(true); return; }
+      set(false);
+      if (head) head.focus({ preventScroll: true });
+      // closing from far below: bring the section back into view
+      if (sec.getBoundingClientRect().top < 0) sec.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    });
+  });
+})();
+</script>
+  <!-- Structured data (schema.org JSON-LD) for search engines / AI: page summary, product facts, FAQ.
+       Kept inside the detail block so it goes onto the site together with the block.
+       No page URL on purpose: "#webpage" / "#product" / "#faq" resolve against whatever URL the page is published at. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "#webpage",
+        "inLanguage": "ko-KR",
+        "name": "SketchUp Pro Civil Contractor | 토공 설계 · 현장 측량 연동 | 빌딩스토어",
+        "description": "SketchUp Pro Civil Contractor 상세 안내: 구성(SketchUp Pro + Trimble Site Contractor + Trimble Field Points), 도입 효과, Site Contractor·Field Points 주요 기능, 포함 제품, 플랜별 비교, 지원 파일 포맷, 시스템 요구 사항, 구매·라이선스 정책.",
+        "about": {
+          "@id": "#product"
+        },
+        "publisher": {
+          "@id": "https://store.buildingpoint.co.kr/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://store.buildingpoint.co.kr/#organization",
+        "name": "빌딩포인트코리아",
+        "alternateName": "빌딩스토어",
+        "url": "https://store.buildingpoint.co.kr/"
+      },
+      {
+        "@type": [
+          "Product",
+          "SoftwareApplication"
+        ],
+        "@id": "#product",
+        "name": "SketchUp Pro Civil Contractor",
+        "alternateName": [
+          "스케치업 프로 시빌 컨트랙터",
+          "SketchUp Pro Civil Contractor 2027"
+        ],
+        "description": "SketchUp Pro Civil Contractor는 SketchUp Pro의 모든 기능에 Trimble Site Contractor와 Trimble Field Points를 더한 토목·토공 전문가용 플랜입니다. 굴착 지오메트리를 모델링해 Siteworks·Earthworks 호환 장비 제어 파일(.dxf, .ttm)로 내보내고, 로보틱 토탈스테이션(RTS) 측점을 스케치업 원점 기준으로 가져오거나 설계 포인트를 .tflx·CSV 현장 배치 파일로 내보낼 수 있습니다.",
+        "brand": {
+          "@type": "Brand",
+          "name": "SketchUp"
+        },
+        "manufacturer": {
+          "@type": "Organization",
+          "name": "Trimble Inc."
+        },
+        "category": "3D 모델링·포인트 클라우드 소프트웨어",
+        "applicationCategory": "DesignApplication",
+        "applicationSubCategory": "토공·굴착 설계 및 현장 측량 데이터 연동",
+        "operatingSystem": "Windows 11 (Site Contractor·Field Points는 Windows 전용), macOS 15(Sequoia) 이상, 웹 브라우저, iPadOS (SketchUp Pro 기능)",
+        "softwareVersion": "2027",
+        "memoryRequirements": "RAM 8GB 이상",
+        "storageRequirements": "디스크 공간 6GB 이상",
+        "processorRequirements": "2GHz 이상 (Windows) · 2.1GHz 이상 (macOS)",
+        "softwareRequirements": "Windows: .NET Framework 4.6.2 이상 / macOS: QuickTime 5.0 이상 / 그래픽: VRAM 8GB 이상 최신 GPU (OpenGL 3.1 이상)",
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "토목 설계자, 현장 시공팀, 현장 측량기사·토탈스테이션 담당자, 측량·엔지니어링 팀"
+        },
+        "featureList": [
+          "Site Contractor: 스케치업 지형을 Siteworks 태블릿용 파일로 내보내기",
+          "Site Contractor: 굴착 장비 모니터에 설계 도면과 굴착 높이 제공 (.dxf, .ttm)",
+          "Site Contractor: 컨트롤 포인트로 스케치업 원점과 현장 좌표 매칭",
+          "Site Contractor: 현장 측량 지형 가져오기",
+          "Field Points: 원점 오프셋 설정",
+          "Field Points: 설계 포인트 생성 및 변환",
+          "Field Points: Field Link용 .tflx 및 CSV 내보내기",
+          "Field Points: NEZ / ENZ 좌표축 자동 정렬",
+          "SketchUp Pro 전 기능 포함: Desktop·웹·iPad 3D 모델링, LayOut 도면, 3D Warehouse, Extension Warehouse, Trimble Connect, PreDesign",
+          "2027 신규: Procedure Tools 3종 (Follow Me, Solid Tools, Copy Along) — 작업 과정을 기억해 수정만으로 결과 변경",
+          "2027 신규: 단면 해치 — 객체 단면에 원하는 해치 패턴 적용 (SketchUp·LayOut 지원)",
+          "2027 신규: Auto Fit 라이브 컴포넌트 — 면에 놓으면 크기·형태 자동 맞춤",
+          "2027 개선: 탭으로 여러 모델 관리, Mac 인터페이스 통일, 은선 처리 성능 개선, CAD·IFC·USD 가져오기/내보내기 강화"
+        ],
+        "additionalProperty": [
+          {
+            "@type": "PropertyValue",
+            "name": "구성",
+            "value": "SketchUp Pro + Trimble Site Contractor + Trimble Field Points"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "현장 연동 파일 포맷",
+            "value": "Site Contractor: DXF, TTM (Siteworks·Earthworks) / Field Points: TFLX (Field Link), CSV"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "포함 제품",
+            "value": "Trimble Site Contractor, Trimble Field Points, Desktop용 SketchUp, 웹용 SketchUp, iPad용 SketchUp, LayOut, SketchUp Viewer, 3D Warehouse, Extension Warehouse, Trimble Connect, PreDesign"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "클라우드 스토리지",
+            "value": "Trimble Connect 무제한"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "사용 기기",
+            "value": "1개 라이선스당 최대 2대 (PC/노트북), 동시 접속 불가"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "지원 언어",
+            "value": "한국어 지원 (다국어 포함)"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "플랜 구성",
+            "value": "플랜 구성(빌딩스토어 비교표 기준): Pro = 기본 구성 + Field Points / Pro Scan = Pro + Field Points + Scan Essentials / Pro Civil Contractor = Pro + Field Points + Site Contractor / Pro Advanced = Pro + Field Points + Site Contractor + Scan Essentials + Revit Importer / Studio = Pro Advanced 구성 + V-Ray. Field Points·Site Contractor·Scan Essentials·Revit Importer·V-Ray는 Windows 전용"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "가져오기 포맷",
+            "value": "3DS, DWG, DXF, DAE, DEM, DDF, KMZ, IFC, IFCZIP, JPG, JPEG, PDF, PSD, PNG, STL, SKP, SKM, SKE, SKH, STYLE, TIF, TIFF, TGA, TRB, USD, USDA, USDC, USDZ, BMP, GLB"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "내보내기 포맷 (2D)",
+            "value": "PDF, EPS, BMP, JPG, TIF, PNG, DWG, DXF"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "내보내기 포맷 (3D)",
+            "value": "3DS, DWG, DXF, DAE, FBX, KMZ, IFC, TRB, OBJ, STL, USD/USDA/USDC/USDZ, WRL, XSI, GLB"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "설치 제한",
+            "value": "32비트 Windows 및 Boot Camp·VMware·Parallels 등 가상화 환경 미지원"
+          },
+          {
+            "@type": "PropertyValue",
+            "name": "라이선스 발급",
+            "value": "영업일 기준 평균 1~2일"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "SketchUp Pro Civil Contractor는 SketchUp Pro와 무엇이 다른가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "SketchUp Pro Civil Contractor는 SketchUp Pro의 모든 기능에 굴착·토공 설계를 현장 장비 제어 파일로 내보내는 Trimble Site Contractor와 현장 측점 데이터를 스케치업 좌표와 연동하는 Trimble Field Points가 더해진 제품입니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Site Contractor와 Field Points는 어떤 파일로 현장 장비와 연동하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Trimble Site Contractor는 스케치업 지형·굴착 모델을 Siteworks·Earthworks 호환 장비 제어 파일(.dxf, .ttm)로 내보내고, Trimble Field Points는 설계 포인트를 Field Link용 .tflx 파일과 범용 CSV로 내보내며 로보틱 토탈스테이션(RTS) 측점을 스케치업 원점 기준으로 가져옵니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "SketchUp Pro Civil Contractor 구독 중이면 2027 신규 버전을 추가 비용 없이 쓸 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "네. 구독 중이라면 추가 비용 없이 최신 버전을 그대로 사용할 수 있습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "SketchUp Pro Civil Contractor 라이선스 하나로 몇 대의 기기에서 사용할 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "1개 라이선스당 최대 2대의 기기(PC/노트북)에서 사용할 수 있습니다. 단, 동시 접속은 불가하며 장비 이동 시 재로그인해야 합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "SketchUp Pro Civil Contractor 구매 후 환불이 가능한가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "라이선스 발급일 기준 7일 이내에 라이선스를 활성화하지 않은 경우 환불이 가능합니다. 라이선스 발급 완료(활성화) 후에는 교환·반품·환불이 불가능합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "개인 명의로 구매한 SketchUp 라이선스를 회사에서 써도 되나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "아니요. 구매자와 실제 최종 사용자 정보(개인/기업 명의)가 동일해야 하며, 개인 명의 라이선스의 기업 사용은 저작권법 위반 대상입니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "SketchUp 라이선스를 다른 사람에게 양도할 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "라이선스 양도·양수는 원칙적으로 불가능하며, 기업 인수합병 등 예외적인 경우에만 증빙 서류 제출 후 변경이 가능합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "라이선스는 언제 발급되나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "라이선스 발급에는 영업일 기준 평균 1~2일이 소요됩니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "국내 기술지원을 받으려면 어디서 구매해야 하나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "빌딩포인트코리아 또는 공식 리셀러를 통해 구매해야 정식 국내 기술지원을 받을 수 있습니다. 해외 직구 시 국내 지원이 불가합니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "SketchUp Pro Civil Contractor의 시스템 요구 사항은 무엇인가요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Windows 11 또는 macOS 15(Sequoia) 이상, CPU 2GHz 이상(Mac 2.1GHz 이상), RAM 8GB 이상, 디스크 6GB 이상, VRAM 8GB 이상 최신 GPU(OpenGL 3.1 이상)가 필요합니다. 32비트 Windows와 가상화 환경은 지원하지 않습니다."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Field Points, Site Contractor, Scan Essentials, Revit Importer, V-Ray는 Mac에서도 쓸 수 있나요?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "아니요. Field Points, Site Contractor, Scan Essentials, Revit Importer, V-Ray 기능은 Windows 환경에서만 사용할 수 있습니다. SketchUp Pro에 포함된 기본 기능(Desktop·웹·iPad)은 macOS와 iPad에서도 사용할 수 있습니다."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</div>
+<script>
+/* Preview helper — NOT part of the detail block (only the block above goes on the site).
+   When this page is opened inside test_layout.html, hand the block's HTML to that page;
+   postMessage works from file://, so the preview needs no local server. */
+if (window.parent !== window) {
+  var block = document.querySelector('.sketchup_detail_container');
+  if (block) window.parent.postMessage({ type: 'detail-block', html: block.outerHTML }, '*');
+}
+</script>
+</body>
+</html>
