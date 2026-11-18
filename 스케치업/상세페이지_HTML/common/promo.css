@@ -253,13 +253,13 @@
   .sketchup_promo_container .bf-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
   .sketchup_promo_container .bf-countdown {   /* Figma Frame 42: x 442.1, y 253.9, 383 × 49 — starts from the left, under the % balloon */
     position: absolute; z-index: 1; left: calc(442.1 * var(--hu)); top: calc(253.9 * var(--hu)); height: calc(49 * var(--hu));
-    display: flex; align-items: flex-start; gap: calc(7.7 * var(--hu));
-    font-family: var(--bf-omni); font-size: calc(27.45 * var(--hu)); font-weight: 500; line-height: normal; letter-spacing: -0.031em; color: var(--bf-sky); white-space: nowrap;
+    display: flex; align-items: flex-start; gap: calc(7.47 * var(--hu));
+    font-family: var(--bf-omni); font-size: calc(26.63 * var(--hu)); font-weight: 500; line-height: normal; letter-spacing: -0.031em; color: var(--bf-sky); white-space: nowrap;
   }
   .sketchup_promo_container .bf-countdown .cd { display: inline-flex; align-items: flex-start; }
   .sketchup_promo_container .bf-countdown b {
-    display: inline-block; width: calc(58 * var(--hu)); text-align: center;   /* fixed "00" box: digits don't make the row jump */
-    font-size: calc(42.56 * var(--hu)); font-weight: 600; line-height: normal; letter-spacing: -0.02em; color: var(--bf-lime); font-variant-numeric: tabular-nums;
+    display: inline-block; width: calc(56.26 * var(--hu)); text-align: center;   /* fixed "00" box: digits don't make the row jump */
+    font-size: calc(41.28 * var(--hu)); font-weight: 600; line-height: normal; letter-spacing: -0.02em; color: var(--bf-lime); font-variant-numeric: tabular-nums;
   }
 
   /* cards: 3 columns of 252, gap 16; the 6th cell holds the notes (bottom-aligned) */
