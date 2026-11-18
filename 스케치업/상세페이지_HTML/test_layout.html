@@ -899,13 +899,14 @@
       if (done) done(block);
     });
   }
-  // Banner (test page only). promo-show=bf shows that banner whatever the date; promo-at=YYYY-MM-DDTHH:MM
+  // Banner (test page only). promo-show=launch|bf shows that banner whatever the date; promo-at=YYYY-MM-DDTHH:MM
   // (Korean time) runs the banners as if it were then, the clock ticking on from there. Nothing = the real time.
   var PROMO_TIMES = [
     { value: '', label: '지금 (실제 일정대로)' },
+    { value: 'promo-show=launch', label: '2027 출시 기념 15% 보기' },
     { value: 'promo-show=bf', label: '블랙프라이데이 30% 보기' },
-    { value: 'promo-at=2026-11-19T23:59:50', label: '11/19 23:59:50 (10초 뒤 시작)' },
-    { value: 'promo-at=2026-12-04T23:59:50', label: '12/4 23:59:50 (10초 뒤 종료)' },
+    { value: 'promo-at=2026-11-19T23:59:50', label: '11/19 23:59:50 (10초 뒤 15% → 블프)' },
+    { value: 'promo-at=2026-12-04T23:59:50', label: '12/4 23:59:50 (10초 뒤 블프 종료)' },
     { value: 'promo-at=2026-12-05T00:00', label: '12/5 00:00~ (배너 없음)' }
   ];
   var promoAt = (/[?&](promo-(?:at|show)=[^&]*)/.exec(location.search) || [, ''])[1];
