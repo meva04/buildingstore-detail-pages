@@ -111,7 +111,8 @@
     position: relative; width: calc(825.2 * var(--hu)); height: calc(314 * var(--hu));
     margin-left: calc(-33 * var(--hu));   /* hero starts at x = 49 (cards at 82) */
   }
-  .sketchup_promo_container .bf-art { position: absolute; left: calc(2 * var(--hu)); top: 0; width: calc(532 * var(--hu)); height: calc(314 * var(--hu)); }
+  /* balloons sit on top of the text (Figma layer order): the % balloon slightly covers the first digits of the countdown on purpose */
+  .sketchup_promo_container .bf-art { position: absolute; z-index: 2; left: calc(2 * var(--hu)); top: 0; width: calc(532 * var(--hu)); height: calc(314 * var(--hu)); pointer-events: none; }
   .sketchup_promo_container .bf-art img { position: absolute; max-width: none; height: auto; }
   .sketchup_promo_container .bf-b3 { left: 0; top: calc(0.5 * var(--hu)); width: calc(239.4 * var(--hu)); filter: drop-shadow(calc(5.9 * var(--hu)) calc(1.36 * var(--hu)) calc(4 * var(--hu)) rgba(0,0,0,.5)); }
   .sketchup_promo_container .bf-b0 { left: calc(194.8 * var(--hu)); top: calc(-0.3 * var(--hu)); width: calc(240 * var(--hu)); filter: drop-shadow(calc(5.9 * var(--hu)) calc(1.36 * var(--hu)) calc(4 * var(--hu)) rgba(0,0,0,.7)); }
@@ -132,17 +133,19 @@
     left: calc(438.5 * var(--hu)); top: calc(95.3 * var(--hu));
     font-family: "Bruno Ace SC", "Pretendard Variable", sans-serif; font-size: calc(85 * var(--hu)); line-height: 0.9; color: #fff;
   }
-  .sketchup_promo_container .bf-black br + * , .sketchup_promo_container .bf-black { letter-spacing: 0; }
+  .sketchup_promo_container .bf-black { letter-spacing: 0; }
+  .sketchup_promo_container .bf-black > .bf-l1, .sketchup_promo_container .bf-black > .bf-l2 { display: block; }
+  .sketchup_promo_container .bf-black > .bf-l2 { font-size: calc(78.4 * var(--hu)); }   /* FRIDAY smaller so both lines are the same width (Figma 85 / 78.4) */
   .sketchup_promo_container .bf-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-  .sketchup_promo_container .bf-countdown {
-    position: absolute; left: calc(442.1 * var(--hu)); top: calc(253.9 * var(--hu)); width: calc(383.1 * var(--hu)); height: calc(49 * var(--hu));
-    display: flex; align-items: center; justify-content: flex-end; gap: calc(7.7 * var(--hu));
-    font-family: var(--bf-omni); font-size: calc(27.45 * var(--hu)); font-weight: 500; line-height: 1; letter-spacing: -0.02em; color: var(--bf-sky); white-space: nowrap;
+  .sketchup_promo_container .bf-countdown {   /* Figma Frame 42: x 442.1, y 253.9, 383 × 49 — starts from the left, under the % balloon */
+    position: absolute; z-index: 1; left: calc(442.1 * var(--hu)); top: calc(253.9 * var(--hu)); height: calc(49 * var(--hu));
+    display: flex; align-items: flex-start; gap: calc(7.7 * var(--hu));
+    font-family: var(--bf-omni); font-size: calc(27.45 * var(--hu)); font-weight: 500; line-height: normal; letter-spacing: -0.031em; color: var(--bf-sky); white-space: nowrap;
   }
-  .sketchup_promo_container .bf-countdown .cd { display: inline-flex; align-items: center; }
+  .sketchup_promo_container .bf-countdown .cd { display: inline-flex; align-items: flex-start; }
   .sketchup_promo_container .bf-countdown b {
-    display: inline-block;
-    font-size: calc(42.56 * var(--hu)); font-weight: 600; color: var(--bf-lime); font-variant-numeric: tabular-nums;
+    display: inline-block; width: calc(58 * var(--hu)); text-align: center;   /* fixed "00" box: digits don't make the row jump */
+    font-size: calc(42.56 * var(--hu)); font-weight: 600; line-height: normal; letter-spacing: -0.02em; color: var(--bf-lime); font-variant-numeric: tabular-nums;
   }
 
   /* cards: 3 columns of 252, gap 16; the 6th cell holds the notes (bottom-aligned) */
