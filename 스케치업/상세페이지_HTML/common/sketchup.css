@@ -471,30 +471,41 @@
   /* the table is 16px wider than its box (border-spacing gutters); clip that empty strip so it can't overflow */
   /* the 8px border-spacing gutters reach 8px past the content on both sides (scroll box pulled out by -8px);
      with 6 plan columns a narrow page scrolls the table sideways instead of squeezing the feature column */
-  .sketchup_detail_container .compare-scroll { margin: 0 -8px; overflow-x: auto; }
+  .sketchup_detail_container .compare-scroll { margin: 0 -6px; overflow-x: auto; }
   .sketchup_detail_container .plans > .sec-inner { overflow-x: clip; }  /* those 8px never widen the page */
-  .sketchup_detail_container .compare-table { border-collapse: separate; border-spacing: 8px 0; width: 100%; }
+  .sketchup_detail_container .compare-table { border-collapse: separate; border-spacing: 6px 0; width: 100%; }
   .sketchup_detail_container .compare-table th, .sketchup_detail_container .compare-table td { text-align: left; vertical-align: middle; }
   .sketchup_detail_container .compare-table thead th {
     position: relative; border-top: 1px solid var(--ink); padding: 8px 0; vertical-align: top;
     font-size: var(--fs-small); font-weight: 600; line-height: var(--lh-subhead); letter-spacing: -0.5px; color: var(--accent); min-width: 80px;
   }
-  .sketchup_detail_container .compare-table thead th:not(:last-child)::after { content: ""; position: absolute; top: -1px; right: -8px; width: 8px; border-top: 1px solid var(--ink); }
+  .sketchup_detail_container .compare-table thead th:not(:last-child)::after { content: ""; position: absolute; top: -1px; right: -6px; width: 6px; border-top: 1px solid var(--ink); }
   .sketchup_detail_container .compare-table thead th:first-child { color: var(--ink); line-height: normal; }
   .sketchup_detail_container .compare-table thead th small { display: block; font-size: var(--fs-caption); font-weight: 400; margin-top:4px; line-height:1.2 }
   /* plan columns shrink to their header text (width:1% = as narrow as the content allows) so the feature column keeps room for "Win Only" */
   .sketchup_detail_container .compare-table .col { width: 1%; text-align: center; line-height:1; }
-  .sketchup_detail_container .compare-table thead th.col { min-width: 64px; padding-left: 6px; padding-right: 6px; }
+  .sketchup_detail_container .compare-table thead th.col { min-width: 60px; padding-left: 2px; padding-right: 2px; }
+  .sketchup_detail_container .compare-table thead th.col small { white-space: nowrap; letter-spacing: -0.04em; }  /* Korean plan note stays on one line */
   .sketchup_detail_container .compare-table th:first-child,
   .sketchup_detail_container .compare-table td:first-child { min-width: 140px; }
   .sketchup_detail_container .compare-table .is-pro { background: var(--primary-pale); color: var(--primary); }
   .sketchup_detail_container .compare-table tbody td { border-top: 1px solid rgba(0, 0, 0, 0.2); padding: 12px 12px 12px 0; }
+  .sketchup_detail_container .compare-table tbody td:first-child { padding-right: 4px; }  /* room for name + Win Only on one line */
   .sketchup_detail_container .compare-table tbody td.col { padding: 8px 0; font-size: var(--fs-small); font-weight: 600; line-height: var(--lh-subhead); letter-spacing: -0.32px; color: var(--gray-50); }
   .sketchup_detail_container .compare-table tbody td.col.is-pro { color: var(--primary); }
-  .sketchup_detail_container .feat { display: flex; align-items: center; gap: 4px 10px; flex-wrap: wrap; }  /* badge drops under the name when the column is narrow */
+  .sketchup_detail_container .feat { display: flex; align-items: center; gap: 4px 8px; flex-wrap: wrap; }  /* badge drops under the name when the column is narrow */
   .sketchup_detail_container .feat .txt b { display: block; font-size: var(--fs-body); font-weight: 500; line-height: var(--lh-subhead); }
   .sketchup_detail_container .feat .txt span { display: block; font-size: var(--fs-caption); font-weight: 500; line-height: var(--lh-subhead); color: var(--accent); letter-spacing: 0px;}
   .sketchup_detail_container .badge { flex: none; border: 1.556px solid var(--primary); border-radius: 38.889px; padding: 4px 10px; font-size: var(--fs-small); font-weight: 600; line-height: var(--lh-text); color: var(--primary); white-space: nowrap; }
+  /* wide layout: the feature column is only as wide as its longest row with "Win Only" kept beside the name;
+     every extra pixel goes to the plan columns */
+  @container sketchup (min-width: 800px) {
+    .sketchup_detail_container .compare-table th:first-child,
+    .sketchup_detail_container .compare-table td:first-child { width: 1%; }
+    .sketchup_detail_container .compare-table td:first-child .feat { flex-wrap: nowrap; }
+    .sketchup_detail_container .compare-table td:first-child .feat .txt { white-space: nowrap; }
+    .sketchup_detail_container .compare-table .col { width: auto; }
+  }
   .sketchup_detail_container .dot { display: inline-block; width: 16px; height: 16px; border-radius: 50%; background: var(--gray-50); vertical-align: middle; }
   .sketchup_detail_container .is-pro .dot { background: var(--primary); }
   .sketchup_detail_container .dash { display: inline-block; width: 16px; border-top: 1px solid var(--gray-50); vertical-align: middle; }
