@@ -83,6 +83,8 @@
   /* preview-only header: everything except the SketchUp menu is switched off */
   .sec-header .pv-off { opacity: 0.3; pointer-events: none; cursor: default; }
   .sec-header .submenu a.is-current { color: #0063a3; font-weight: 700; }
+  /* SketchUp submenu has 5 items (last one ends ≈ 349px): give the expanded header room below it */
+  .sec-header { --gnb-expanded-height: 390px; }
   /* placeholders for what the store's scripts normally fill in */
   .preview-ph { display: flex; align-items: center; justify-content: center; border-radius: 12px; background: #eef0f3; color: #8a8f99; font: 500 15px "Pretendard", sans-serif; }
   .preview-ph-inline { color: #8a8f99; font-size: 16px; }
@@ -108,10 +110,10 @@
                         <ul class="submenu">
                             <!-- 미리보기: 각 제품의 상세페이지(index.html)를 이 테스트 페이지에 불러온다 (?page=…). 페이지가 아직 없는 제품은 비활성 -->
                             <li><a href="test_layout.html?page=pro" data-page="pro">스케치업 프로</a></li>
+                            <li><a href="test_layout.html?page=pro-civil-contractor" data-page="pro-civil-contractor">스케치업 프로 시빌 컨트랙터</a></li>
                             <li><a href="test_layout.html?page=pro-scan" data-page="pro-scan">스케치업 프로스캔</a></li>
                             <li><a href="test_layout.html?page=pro-advanced" data-page="pro-advanced">스케치업 프로 어드밴스드</a></li>
                             <li><a href="test_layout.html?page=studio" data-page="studio">스케치업 스튜디오</a></li>
-                            <li><a href="test_layout.html?page=pro-civil-contractor" data-page="pro-civil-contractor">스케치업 프로 시빌 컨트랙터</a></li>
                         </ul>
                     </li>
                     <li class="menu-item">
